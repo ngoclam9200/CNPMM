@@ -1,0 +1,43 @@
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Contact Form</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  </head>
+  <app-layout></app-layout>
+  <body>
+
+    <!--alert messages start
+    <div class="alert-success">
+      <span>Message Sent! Thank you for contacting us.</span>
+    </div>
+    <div class="alert-error">
+      <span>Something went wrong! Please try again.</span>
+    </div>
+    alert messages end-->
+
+    <!--contact section start-->
+    <div class="contact-section">
+      <div class="contact-info">
+        <div><i class="fas fa-map-marker-alt"></i>144/2, đường 128, Phước Long A , Thành phố Thủ Đức , TPHCM</div>
+        <div><i class="fas fa-envelope"></i>buialam022000@gmail.com</div>
+        <div><i class="fas fa-phone"></i>0364681528</div>
+        <div><i class="fas fa-clock"></i>{{myDate | date:'long'}} </div>
+      </div>
+      <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form class="contact" action="" method="post">
+          <input type="text" name="name" class="text-box" placeholder="Your Name" required>
+          <input type="email" name="email" class="text-box" placeholder="Your Email" required>
+          <textarea ng-model="myTextarea"></textarea>
+                    <input type="submit" name="submit" class="send-btn" value="Send">
+        </form>
+      </div>
+    </div>
+    <!--contact section end-->
+
+  </body>
+  

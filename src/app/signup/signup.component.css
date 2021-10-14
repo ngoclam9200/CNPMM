@@ -118,6 +118,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 	-moz-border-radius: 5px;
 	-ms-border-radius:5px;
 	-o-border-radius: 5px;
+	background:  rgba(0, 0, 0, 0.55)  no-repeat 10px 10px;
 }
 input[type="email"] {
     background:  rgba(0, 0, 0, 0.55)  no-repeat 10px 10px;

@@ -25,8 +25,12 @@
                 <li><span><a href="">Product</a></span></li>
                 <li><span><a [routerLink]='["/aboutus"]'>About us</a></span></li>
                 <li><span><a [routerLink]='["/contactus"]'>Contact us</a></span></li>
-                <li><span><a [routerLink]='["/signin"]' >Sign in</a></span></li>
-                <li><span><a [routerLink]='["/signup"]'>Sign up</a></span></li>
+                
+                <li ><span *ngIf ="!isLogin"><a [routerLink]='["/signin"]' >Sign in</a></span></li>
+                <li><span *ngIf ="!isLogin"><a [routerLink]='["/signup"]'>Sign up</a></span></li>
+                
+                <li><span *ngIf ="isLogin"><a [routerLink]='["/profileuser"]'>{{username}}</a></span></li>
+                <li><span *ngIf ="isLogin"><a (click)="logout()">Logout</a>></span></li>
                
             </nav>
         </div>

@@ -26,12 +26,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<h2><span>Sign up now</span></h2>
 				
 					
-					<form action="#" method="post">
-						<input placeholder=" Email" name="Email" type="email" required="">
-                        <input placeholder=" Username" name="Email" type="email" required="">
-						<input placeholder="Full name" name="Password" type="password" required="">
-                        <input placeholder="Password" name="Password" type="password" required="">
-                        <input placeholder="Confirm Password" name="Password" type="password" required="">
+					<form [formGroup]="formGroup" (ngSubmit)="registerProces()">
+						<input placeholder=" Email" formControlName="email"  type="email" required="">
+                        <input placeholder=" Username" value="" formControlName="userName" type="text">
+						<input placeholder="Full name" value="" formControlName="fullName" name="Password" type="text" required="">
+						<input placeholder="Address" value="" formControlName="address" name="address" type="text" required="">
+						<input placeholder="Phone number" value="" formControlName="phoneNumber" name="phoneNumber" type="text" required="ádsdas">
+
+                        <input placeholder="Password" formControlName="password"  name="Password" type="password" required="">
+                        <input placeholder="Confirm Password" formControlName="confirmpassword" name="Password" type="password" required="">
 						<input type="submit" value="Sign up" name="login">
                        
 					</form>

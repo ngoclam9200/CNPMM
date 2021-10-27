@@ -1,0 +1,76 @@
+div.comparisontable{
+    display: flex;
+    flex-direction: column; /* turn children ul elements into stacked rows */
+}
+ 
+ 
+div.comparisontable ul.row{
+    list-style: none;
+    display: flex; /* turn children li elements into flex children */
+    flex: 1;
+    flex-wrap: wrap;
+   margin-top: 5px;margin-bottom: 5px;
+}
+ 
+div.comparisontable ul.row li{
+    background: #c9f4ca;
+    flex: 1;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+ 
+/* the legend column (first li within each row) */
+div.comparisontable ul.row li.legend{
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 200px;
+    border-bottom: 1px solid white;
+}
+ 
+/* very first row */
+div.comparisontable ul.row:first-of-type li{
+    text-align: center;
+}
+ 
+/* very last row */
+div.comparisontable ul.row:last-of-type li{
+    text-align: center;
+    border-bottom: none;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.23);
+}
+ 
+ 
+/* first and last cell within legend column */
+div.comparisontable ul.row:first-of-type li.legend.legend,
+div.comparisontable ul.row:last-of-type li.legend{
+    
+    box-shadow: none;
+}
+@media screen and (max-width:650px){
+ 
+    div.comparisontable ul.row{
+        flex-direction: column; 
+    }
+     
+    div.comparisontable img{
+        width: auto;
+        height: auto;
+    }
+     
+    div.comparisontable ul.row li{
+        margin-right: 0;
+        width: auto;
+        flex: auto;
+    }
+     
+    /* first and last cell within legend column */
+    div.comparisontable ul.row:first-of-type li.legend.legend,
+    div.comparisontable ul.row:last-of-type li.legend{
+        display: none;
+    }
+     
+    div.comparisontable ul.row li.legend{
+        width: auto;
+    }
+    }

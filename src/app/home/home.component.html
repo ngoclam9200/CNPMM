@@ -35,47 +35,24 @@
 							
 							
 							<section class="tiles">
-								<article >
+								<article style="border:2px solid black" *ngFor="let data of array">
 									<span  class="image">
 
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
+										<a  style="cursor: pointer;"><img   src="{{data.Image}}" width="340px" height="200px" alt="kjkkkkkk" /></a>
+										{{data.carName}}
+										<p> <strong> ${{data.price}}</strong></p>
 									</span>
-
+<!-- 
 									<header class="major">
 										<p style="top: 3px;">
-											<i class="fa fa-dashboard"></i> 1300km 
+											<i class="fa fa-dashboard"></i> {{data.topSpeed}}
 											<i class="fa fa-cube"></i> 1800cc
 											
 										</p>
 
-										<h4>BMW I8</h4>
+										<h4>{{data.carName}}</h4>
 
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
-
-										
-
-										
-
-										<div class="major-actions">
-											<a href="car-details.html" class="button small next">View Car</a>
-										</div>
-									</header>
-								</article>
-								<article >
-									<span  class="image">
-
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
-									</span>
-
-									<header class="major">
-										<p>
-											<i class="fa fa-dashboard"></i> 1300km 
-											<i class="fa fa-cube"></i> 1800cc
-										</p>
-
-										<h4>BMW I8</h4>
-
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
+										<p> <strong> ${{data.price}}</strong></p>
 
 										
 
@@ -84,114 +61,9 @@
 										<div class="major-actions">
 											<a href="car-details.html" class="button small next">View Car</a>
 										</div>
-									</header>
+									</header> -->
 								</article>
-								<article >
-									<span  class="image">
-
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
-									</span>
-
-									<header class="major">
-										<p>
-											<i class="fa fa-dashboard"></i> 1300km
-											<i class="fa fa-cube"></i> 1800cc&nbsp;&nbsp;
-											
-										</p>
-
-										<h4>BMW I8</h4>
-
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
-
-										
-
-										
-
-										<div class="major-actions">
-											<a href="car-details.html" class="button small next">View Car</a>
-										</div>
-									</header>
-								</article>
-								<article >
-									<span  class="image">
-
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
-									</span>
-
-									<header class="major">
-										<p>
-											<i class="fa fa-dashboard"></i> 1300km 
-											<i class="fa fa-cube"></i> 1800cc&nbsp;&nbsp;
-											
-										</p>
-
-										<h4>BMW I8</h4>
-
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
-
-										
-
-										
-
-										<div class="major-actions">
-											<a href="car-details.html" class="button small next">View Car</a>
-										</div>
-									</header>
-								</article>
-								<article >
-									<span  class="image">
-
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
-									</span>
-
-									<header class="major">
-										<p>
-											<i class="fa fa-dashboard"></i> 1300km
-											<i class="fa fa-cube"></i> 1800cc&nbsp;&nbsp;
-											
-										</p>
-
-										<h4>BMW I8</h4>
-
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
-
-										
-
-										
-
-										<div class="major-actions">
-											<a href="car-details.html" class="button small next">View Car</a>
-										</div>
-									</header>
-								</article>
-
-								<article >
-									<span  class="image">
-
-										<img  src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" alt="kjkkkkkk" />
-									</span>
-
-									<header class="major">
-										<p >
-											<i class="fa fa-dashboard"></i> 1300km 
-											<i class="fa fa-cube"></i> 1800cc&nbsp;&nbsp;
-											
-										</p>
-
-										<h4>BMW I8</h4>
-
-										<p><del>$11199.00</del> <strong> $11179.00</strong></p>
-
-										
-
-										
-
-										<div class="major-actions">
-											<a href="car-details.html" class="button small next">View Car</a>
-										</div>
-									</header>
-								</article>
-							
+								
 
 								
 							</section>

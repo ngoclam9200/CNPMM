@@ -13,10 +13,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProfileuserComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { }
-arr:[]
+  data:any
+fullName;address;phoneNumber;email:any
+
+formGroup;formGroupchangepass : FormGroup;
+
   ngOnInit(): void {
     
     this.currentData()
+    this.initForm()
+  }
+  initForm(){
+
+    this.formGroup= new FormGroup({
+     
+      fullName: new FormControl("", [Validators.required]),
+      address: new FormControl("",[ Validators.required]),
+      phoneNumber: new FormControl("",[ Validators.required]),
+      email: new FormControl("", [Validators.required]),
+      oldPassword: new FormControl("", [Validators.required]),
+      newPassword: new FormControl("", [Validators.required]),
+      confirmpassword: new FormControl("", [Validators.required]),
+    }); 
+    this.formGroupchangepass= new FormGroup({
+     
+      
+      oldPassword: new FormControl("", [Validators.required]),
+      newPassword: new FormControl("", [Validators.required]),
+    
+    }); 
+
   }
   currentData() {
 
@@ -32,19 +58,23 @@ arr:[]
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/user/user`, { headers: headers }).subscribe(data => {
-      console.log(JSON.stringify(data))
-      var jsonvalue = JSON.stringify(data)
-      var valueFromJson  = JSON.parse(jsonvalue)
-    //   this.formGroup = new FormGroup({
-    //     TenKhachHang: new FormControl(valueFromJson.data.TenKhachHang),
-    //     SoDienThoai: new FormControl(valueFromJson.data.SoDienThoai),
-    //     Email: new FormControl(valueFromJson.data.Email),
+    this.http.get(`http://127.0.0.1:3000/api/user/user`, { headers: headers }).subscribe(res => {
+      console.log(JSON.stringify(res))
+      this.data=res
+     this.address=this.data.data.address
+     this.fullName=this.data.data.fullName
+     this.phoneNumber=this.data.data.phoneNumber
+     this.email=this.data.data.email
+      this.formGroup = new FormGroup({
+       
+       
+        fullName: new FormControl(this.data.data.fullName),
+        address: new FormControl(this.data.data.address),
+        phoneNumber: new FormControl(this.data.data.phoneNumber),
+        email: new FormControl(this.data.data.email),
 
-
-
-
-    //   })
+      })
+      
 
 
 
@@ -59,5 +89,82 @@ arr:[]
 
 
   }
+  UpdateUser()
+  {
+  this.currentData()
+   
+    if (this.formGroup.valid) {
+      console.log(this.formGroup.value)
+      this.update(this.formGroup.value).subscribe((result) => {
+        console.log(result)
+
+
+        if (result)
+          console.log(result);
+
+       
+        window.location.reload();
+        alert("Update thành công");
+
+      });
+
+    }
+
+    else alert("Bạn chưa nhập đầy đủ thông tin");
+
+  
+
+  }
+  update(data): Observable<any> {
+
+    let headers = new HttpHeaders();
+    var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    var token = currentUser.token; // your token
+    console.log(token);
+    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+
+
+    return this.http.put(`http://127.0.0.1:3000/api/user/user`, data, { headers: headers });
+  }
+  Changepassword(){
+    if (this.formGroupchangepass.valid) {
+      console.log(this.formGroupchangepass.value)
+      this.changepw(this.formGroupchangepass.value).subscribe((result) => {
+        console.log(result)
+
+
+        if (result)
+          console.log(result);
+
+       
+        window.location.reload();
+        alert(" thành công");
+
+      });
+
+    }
+
+    else alert("Bạn chưa nhập đầy đủ thông tin");
+
+
+  }
+  changepw(data): Observable<any> {
+   
+    let headers = new HttpHeaders();
+    var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    var token = currentUser.token; // your token
+    console.log(token);
+    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+
+
+    return this.http.put(`http://127.0.0.1:3000/api/user/change_password`, data, { headers: headers });
+  }
+
+
+
+  
+
+   
+ 
 
 }

@@ -12,9 +12,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
- 
+ data;role:any
   formGroup : FormGroup;
-  role:boolean=false
+ 
   constructor(private http:HttpClient,
     private router:Router) { }
   
@@ -41,29 +41,39 @@ export class SigninComponent implements OnInit {
       
       
       this.login(this.formGroup.value).subscribe((result) =>{
-        
-        //console.log(result);
+console.log(result)
+        this.data=result
+        this.role=this.data.data.role
+        console.log(this.role);
        
           
-          if(result.message=="Login Success!")
-          {
+         
             
             //console.log(result.data);
             
             // localStorage.setItem('id', JSON.stringify({ id: result.data._id }));
           // console.log(result)
           
-           if(result.message=="Login Success!")
+           if(result.message=="Login Success!" && this.role=="ADMIN")
            {
             localStorage.setItem('userName',this.formGroup.controls['userName'].value)
-            localStorage.setItem('currentUser',JSON.stringify( {token:result.data}) );
+
+            localStorage.setItem('currentUser',JSON.stringify( {token:this.data.data.token}) );
+            localStorage.setItem('role',this.role );
+            console.log(localStorage.getItem('currentUser'))
+
+            this.router.navigate(['/layoutadmin']);
+           }
+           if(result.message=="Login Success!" && this.role=="USER")
+           {
+            localStorage.setItem('userName',this.formGroup.controls['userName'].value)
+            localStorage.setItem('currentUser',JSON.stringify( {token:this.data.data.token}) );
             console.log(localStorage.getItem('currentUser'))
             this.router.navigate(['/profileuser']);
            }
-           
 
             
-          }
+          
 
       }, error=>{
         
@@ -85,7 +95,9 @@ export class SigninComponent implements OnInit {
   }
   
  
+Resetpassword(){
 
+}
   
 
  

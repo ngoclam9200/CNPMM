@@ -24,8 +24,10 @@ export class LayoutComponent implements OnInit {
   }
   logout(){
    
-    localStorage.removeItem('currentUser')
-    localStorage.removeItem('userName')
+    // localStorage.removeItem('currentUser')
+    // localStorage.removeItem('userName')
+    // localStorage.removeItem('role')
+    localStorage.clear()
     this.router.navigate(['/signin']);
     return this.isLogin=false
   }

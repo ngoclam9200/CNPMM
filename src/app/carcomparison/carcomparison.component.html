@@ -1,0 +1,118 @@
+<app-layout></app-layout>
+<br><br>
+<div style="text-align: center; font-size: 20px;" *ngIf="nocarcompare"> No car in compare list.<a style="color: #007bff;" [routerLink]='["/listcar"]'>Add car in compareList</a></div>
+<div *ngIf="!nocarcompare" class="comparisontable">
+ 
+    <ul class="row">
+        <li class="legend">  Office Chairs <br><br><button (click)="addcomparecar()">Choose car to compare</button></li>
+        <li *ngFor="let data of array"><img src="{{data.Image}}"  width="270px" height="150px"/><br /><button (click)="deletecomparecar(data._id)" style="height: 30px; width: 80px;"   >Delete</button></li>
+       
+    </ul>
+     
+    <ul  class="row">
+        <li class="legend">Name car</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.carName}}</li>
+      
+    </ul>
+     
+    <ul class="row">
+        <li class="legend">Price</li>
+        <li style="text-align: center;" *ngFor="let data of array">${{data.price}}</li>
+      
+    </ul>
+     
+    <ul class="row">
+        <li class="legend">Company car</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.colour}}</li>
+     
+    </ul>
+     
+    <ul class="row">
+        <li class="legend">Car life</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.carLife}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Origin</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.origin}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Body</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.body}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Number of seat</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.numberOfSeats}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Year of manufacture</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.yearOfManufacture}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Long</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.longs}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Overall size</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.overallSize}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Fuel comsumption </li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.fuelConsumption}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Top speep</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.topSpeed}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Air bag</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.airBag}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Seat</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.seat}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Engine type</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.engineType}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Tire parameter</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.tireParameters}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Front brake</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.frontBrake}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Wattage</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.wattage}}</li>
+        
+    </ul>
+    <ul class="row">
+        <li class="legend">Gear</li>
+        <li style="text-align: center;"  *ngFor="let data of array">{{data.gear}}</li>
+        
+    </ul>
+
+    <ul class="row">
+        <li style="text-align: left;" class="legend">Status</li>
+        <li style="text-align: center;" *ngFor="let data of array">{{data.status}}</li>
+        
+    </ul>
+    
+ 
+</div>

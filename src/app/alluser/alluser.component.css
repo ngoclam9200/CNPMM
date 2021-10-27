@@ -1,0 +1,9 @@
+.contain{
+    position: absolute;
+    width: 1200px;
+    height: 300px;
+    left: 300px;
+    top: 100px;
+    text-align: center;
+  }
+ 

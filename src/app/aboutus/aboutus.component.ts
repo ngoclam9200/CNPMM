@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 })
 export class AboutusComponent implements OnInit {
 data: any;
+isadmin=false
 nameCompany;phoneNumber;fax;description;address;email:any;
   constructor(private http:HttpClient,
     private router:Router) { }
@@ -40,7 +41,12 @@ nameCompany;phoneNumber;fax;description;address;email:any;
      this.phoneNumber=this.data.data.phoneNumber
      this.fax=this.data.data.fax
      this.email=this.data.data.email
+     this.address=this.data.data.address
      this.description=this.data.data.description
+     if(localStorage.getItem('role')=="ADMIN")
+     {
+       this.isadmin=true
+     }
       // this.array = Object.entries(res)
       // this.array = Object.values(this.array[0][1])
       // console.log(this.array);

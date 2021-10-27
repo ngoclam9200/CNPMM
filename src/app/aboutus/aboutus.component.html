@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 	
 </head>	
-<app-layout></app-layout>
+<app-layout *ngIf="!isadmin"></app-layout>
 <body>
 	<div class="section">
 		<div class="container">

@@ -956,7 +956,7 @@ input::-moz-focus-inner {
 				position: absolute;
 				right: 1.5em;
 				top: 0;
-				vertical-align: middle;
+				/* vertical-align: middle; */
 				width: 36px;
 			}
 
@@ -1066,6 +1066,7 @@ input::-moz-focus-inner {
 		}
 
 		.tiles article {
+			border-radius: 5px ;
 			-moz-align-items: center;
 			-webkit-align-items: center;
 			-ms-align-items: center;
@@ -1164,29 +1165,7 @@ input::-moz-focus-inner {
 				opacity: 0;
 			}
 
-			.tiles article:nth-child(6n - 5):before {
-				background-color: #6fc3df;
-			}
-
-			.tiles article:nth-child(6n - 4):before {
-				background-color: #8d82c4;
-			}
-
-			.tiles article:nth-child(6n - 3):before {
-				background-color: #ec8d81;
-			}
-
-			.tiles article:nth-child(6n - 2):before {
-				background-color: #e7b788;
-			}
-
-			.tiles article:nth-child(6n - 1):before {
-				background-color: #8ea9e8;
-			}
-
-			.tiles article:nth-child(6n):before {
-				background-color: #87c5a4;
-			}
+		
 
 		@media screen and (max-width: 1280px) {
 
@@ -1519,7 +1498,7 @@ input::-moz-focus-inner {
 				line-height: inherit;
 				padding: 0 0.75em;
 				position: relative;
-				vertical-align: middle;
+				/* vertical-align: middle; */
 			}
 
 				#header nav a:last-child {
@@ -1541,7 +1520,7 @@ input::-moz-focus-inner {
 						position: absolute;
 						right: 1.5em;
 						top: 0;
-						vertical-align: middle;
+						/* vertical-align: middle; */
 						width: 24px;
 					}
 
@@ -2239,7 +2218,7 @@ input::-moz-focus-inner {
 			text-align: right;
 			text-indent: 8em;
 			top: 0;
-			vertical-align: middle;
+			/* vertical-align: middle; */
 			white-space: nowrap;
 			width: 8em;
 		}

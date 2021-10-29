@@ -1,6 +1,7 @@
 <app-layoutadmin></app-layoutadmin>
-
-<table class="contain" border="1" >
+<div  style="margin-left: 300px;font-size: 30px;">List all user</div><br>
+<button (click)="ExportTOExcel()" style="margin-left: 300px;background-color: #82C0E7;">Download xlsx</button>
+<table class="styled-table" border="1" #TABLE #table>
   <thead>
   <tr >
     <th  style="text-align: center">Email</th>
@@ -8,13 +9,13 @@
     <th style="text-align: center">Full Name</th>
     <th  style="text-align: center">Phone Number</th>
     <th  style="text-align: center">Address</th>
-    <th style="text-align: center">Role</th>
+    
    
   
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let data of array ">
+  <tr *ngFor="let data of arrayalluser ">
 
     <td>  {{data.email}}</td>
     <td>  {{data.userName}}</td>
@@ -22,7 +23,7 @@
     <td>  {{data.phoneNumber}}</td>
   
     <td>  {{data.address}}</td>
-    <td>  {{data.role}}</td>
+ 
   
     
     
@@ -33,4 +34,7 @@
   </tr>
 </tbody>
 </table>
+
+
+
 

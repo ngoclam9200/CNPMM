@@ -14,8 +14,10 @@
        <app-layoutadmin></app-layoutadmin>
          <form class="modal-content"   [formGroup]="formGroup" (ngSubmit)="createCompany()" >
            <div class="container">
+            <a (click)="cancle()" style="color: red;float: right;font-size: 35px;cursor: pointer;">X</a> <br> <br>
              <h1>Create Company Car</h1>
              <p>Please fill in this form .</p>
+             
              <hr>
              <label for="psw"><b>Name company</b></label>
              <input  formControlName="carCompanyName" type="text" value="" placeholder="Enter name"  name="psw" required>

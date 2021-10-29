@@ -1,12 +1,4 @@
-.contain{
-    position: absolute;
-    width: 1200px;
-    height: 300px;
-    left: 300px;
-    top: 100px;
-    text-align: center;
-  }
-  .styled-table {
+.styled-table {
     border-collapse: collapse;
     margin: 25px 300px;
     font-size: 0.9em;
@@ -17,6 +9,7 @@
     
    
 }
+
 .styled-table thead tr {
     background-color: #82C0E7;
     color: #ffffff;
@@ -42,4 +35,3 @@
     font-weight: bold;
     color: #009879;
 }
- 

@@ -62,14 +62,14 @@ console.log(result)
             localStorage.setItem('role',this.role );
             console.log(localStorage.getItem('currentUser'))
 
-            this.router.navigate(['/layoutadmin']);
+            this.router.navigate(['/alluser']);
            }
            if(result.message=="Login Success!" && this.role=="USER")
            {
             localStorage.setItem('userName',this.formGroup.controls['userName'].value)
             localStorage.setItem('currentUser',JSON.stringify( {token:this.data.data.token}) );
             console.log(localStorage.getItem('currentUser'))
-            this.router.navigate(['/profileuser']);
+            this.router.navigate(['/listcar']);
            }
 
             

@@ -40,7 +40,7 @@
                         </div> -->
 
                         <div *ngIf="!isLogin" class="button">
-                            <h4><a style="cursor: pointer;" href="">Login to book</a></h4> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <h4><a style="cursor: pointer;" >Login to book</a></h4> &nbsp;&nbsp;&nbsp;&nbsp;
 
                         </div>
                         <!-- <div  class="button">
@@ -48,14 +48,14 @@
 
                         </div> -->
                         <div *ngIf="isLogin" class="button">
-                            <h4><a style="cursor: pointer;" href="">Book</a></h4>
+                            <h4><a (click)="booking(_id,carName)" >Book</a></h4>
 
                         </div>
                         <div class="clear"></div>
                     </div>
                     <div class="wish-list">
                         <ul>
-                            <li class="wish"><a href="#">Thêm vào yêu thích</a></li>
+                            <li class="wish"><a >Thêm vào yêu thích</a></li>
                             <li class="compare"><a (click)="comparecar()">So sánh</a></li>
                         </ul>
                     </div>

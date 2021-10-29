@@ -18,7 +18,7 @@
   
           </div>
           <div class="see">
-              <h5><a style="color:red" href="">Danh sách so sánh </a>|| <a style="color:red" href="">Giỏ hàng</a></h5>
+              <h5><a style="color:red"  [routerLink]='["/carcomparison"]'>Danh sách so sánh </a> <a *ngIf="isLogin" style="color:red"  [routerLink]='["/listbookinguser"]'> ||  Booking</a></h5>
               <p></p>
           </div>
           <div class="clear"></div>
@@ -113,7 +113,7 @@
   
                               <div class="add-cart">
   
-                                <h4 *ngIf="isLogin"><a style="cursor: pointer;" href="">Booking</a></h4> <br>
+                                <h4 *ngIf="isLogin"><a style="cursor: pointer;" (click)="booking(data._id,data.carName)">Booking</a></h4> <br>
                                 <h4  *ngIf="!isLogin"><a  style="cursor: pointer;">Login to book</a></h4> <br>
                                 <h4><a style="cursor: pointer;" (click)="comparecar(data._id)">So Sánh</a></h4>
 

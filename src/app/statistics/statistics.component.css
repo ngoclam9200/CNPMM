@@ -1,0 +1,16 @@
+#divChart{
+    display: block;
+    width: 800px;
+    height: 500px;
+    
+}
+canvas{
+    width: 400px;
+    height: 500px;
+}
+#divChartCompany{
+    display: block;
+    width: 600px;
+    height: 600px;
+    
+}

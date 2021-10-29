@@ -20,6 +20,7 @@ arrayCompany:any=[]
 nameCompany;nameCar:any
 idcar:any
 arrayid:any=[]
+arraybooking:any=[]
 nocar:boolean=false
   constructor(private http:HttpClient, private router:Router) { }
 isLogin:boolean
@@ -238,5 +239,93 @@ comparecar(id)
 
 
   
+}
+booking(idcar, namecar) {
+  var exitst = false
+  localStorage.setItem('idcar', idcar)
+  localStorage.setItem('namecar', namecar)
+  let headers = new HttpHeaders();
+  var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  var token = currentUser.token; // your token
+
+  headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+
+
+
+  this.http.get(`http://127.0.0.1:3000/api/schedule/user`, { headers: headers }).subscribe(res => {
+
+    this.data = res
+
+    this.arraybooking = this.data.data
+    console.log(this.arraybooking)
+    console.log(idcar)
+    for (let i = 0; i < this.arraybooking.length; i++) {
+      if (idcar == this.arraybooking[i].carId) {
+        exitst = true
+        break
+
+      }
+
+
+ }
+    console.log(exitst)
+    console.log(this.arraybooking.length)
+    if (this.arraybooking.length == 4) {
+      Swal.fire({
+        title: 'You can only book 4 cars',
+        text: "Are you want to go your booking",
+        icon: 'warning',
+        showCancelButton: true,
+        width: 500,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+
+        confirmButtonText: 'Yes,going it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          this.router.navigate(['/listbookinguser']);
+
+
+        }
+        else return
+
+
+      })
+
+    }
+   else if (exitst == true) {
+      
+      Swal.fire({
+        title: 'you booked this car',
+        text: "Are you want to go your booking",
+        icon: 'warning',
+        showCancelButton: true,
+        width: 500,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+
+        confirmButtonText: 'Yes,going it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          this.router.navigate(['/listbookinguser']);
+
+
+        }
+        else return
+
+
+      })
+
+    }
+
+     else this.router.navigate(['/scheduleuser']);
+
+  });
+
+
 }
 }

@@ -29,10 +29,13 @@ nocarcompare:boolean
   currentcar()
   { 
     this.idcar=localStorage.getItem('arraycomparecar')
-    if(this.idcar=="") this.nocarcompare=true
+    console.log(this.idcar)
+    if(this.idcar=="" || this.idcar==null) this.nocarcompare=true
     else this.nocarcompare=false
     console.log(this.nocarcompare)
-   if(this.idcar.length==24) 
+    if(this.idcar!=null)
+    {
+      if(this.idcar.length==24) 
    
    this.arrayid.push(this.idcar)
    else{
@@ -81,6 +84,9 @@ nocarcompare:boolean
   
   
     }
+
+    }
+   
   }
 
 

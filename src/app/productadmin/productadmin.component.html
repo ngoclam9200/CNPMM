@@ -1,7 +1,14 @@
 <app-layoutadmin></app-layoutadmin>
+<link rel="stylesheet" type="text/css" >
 <div class="newproduct">
     Create New Product <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create</button>
+    Download all car    <button id="a2" (click)="download()"  >Download</button>
 </div>
+<div class="download" >
+  
+
+</div>
+
 <div >
   <form [formGroup]="formGroupSearch" >
     <input formControlName="search" class="inputsearch" placeholder="Enter the name of the car you want to find" type="text" name="" id="">
@@ -24,15 +31,28 @@
     <form [formGroup]="formGroupCar"   >
        <div class="modal-content"    >
          <div class="container">
-          
+          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;" for="psw"><b>X</b> </a> <br>
+
            <label for="psw"><b>Name car</b></label> 
            <small style="color: red;" *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  " > *Name car is required</small>
            <input formControlName="carName" type="text"    required>
           
            <label for="psw"><b>Company Name</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  " > *Name company is required</small>
+           <!-- <small style="color: red;" *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  " > *Name company is required</small> -->
 
-           <input formControlName="companyName" type="text" value=""   name="psw" required>
+           <!-- <input formControlName="companyName" type="text" value=""   name="psw" required> -->
+           <select  formControlName="companyName" style="width: 100%;
+           padding: 15px;
+           margin: 5px 0 22px 0;
+           display: inline-block;
+           border: none;
+           background: #f1f1f1;" 
+            required>
+            <option  *ngFor="let data of arraycompany" [ngValue]="data.carCompanyName" >{{data.carCompanyName}}</option>
+           
+           
+        
+          </select>
            <label for="psw-repeat"><b>Color</b></label>
            <small style="color: red;" *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  " > *Color is required</small>
 
@@ -124,7 +144,7 @@
 
            <div class="clearfix">
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="submit" (click)="Createproduct()" class="signupbtn" >Change</button>
+            <button type="submit" (click)="Createproduct()" class="signupbtn" >Create</button>
           </div>
          </div>
         </div>
@@ -153,13 +173,14 @@
     
     <div id="id02" class="modal">
       <div  class="newproduct">
-        <h3 style="color:white;">Create New Product </h3>
+        <h3 style="color:white;">Update my car </h3>
+     
     </div>
       <app-layoutadmin></app-layoutadmin>
       <form [formGroup]="formGroupCar"   >
          <div class="modal-content"    >
            <div class="container">
-            
+            <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;" for="psw"><b>X</b> </a> <br>
              <label for="psw"><b>Name car</b></label> 
              <small style="color: red;" *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  " > *Name car is required</small>
              <input formControlName="carName" type="text"    required>
@@ -168,6 +189,7 @@
              <small style="color: red;" *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  " > *Name company is required</small>
   
              <input formControlName="companyName" type="text" value=""   name="psw" required>
+             
              <label for="psw-repeat"><b>Color</b></label>
              <small style="color: red;" *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  " > *Color is required</small>
   

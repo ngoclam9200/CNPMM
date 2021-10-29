@@ -29,6 +29,10 @@ import { CompanycarComponent } from './companycar/companycar.component';
 import { ListcompanycarComponent } from './listcompanycar/listcompanycar.component';
 import { SearchcarComponent } from './searchcar/searchcar.component';
 import { CarcomparisonComponent } from './carcomparison/carcomparison.component';
+import { ScheduleadminComponent } from './scheduleadmin/scheduleadmin.component';
+import { ScheduleuserComponent } from './scheduleuser/scheduleuser.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { ListbookinguserComponent } from './listbookinguser/listbookinguser.component';
 
 
 @NgModule({
@@ -52,6 +56,10 @@ import { CarcomparisonComponent } from './carcomparison/carcomparison.component'
     ListcompanycarComponent,
     SearchcarComponent,
     CarcomparisonComponent,
+    ScheduleadminComponent,
+    ScheduleuserComponent,
+    StatisticsComponent,
+    ListbookinguserComponent,
  
    
   ],
@@ -78,12 +86,13 @@ import { CarcomparisonComponent } from './carcomparison/carcomparison.component'
       {path:'layoutadmin', component:LayoutadminComponent },
       {path:'resetpassword',component:ResetpasswordComponent},
       {path:'searchcar',component:SearchcarComponent},
-      
+      {path:'listbookinguser',component:ListbookinguserComponent},
       {path:'listcar',component:ListcarComponent},
       {path:'cardetail',component:CardetailComponent},
       {path:'carcomparison',component:CarcomparisonComponent},
-      
-
+      {path:'scheduleadmin',component:ScheduleadminComponent},
+      {path:'scheduleuser',component:ScheduleuserComponent},
+      {path:'statistics',component:StatisticsComponent},
       {path:'', component:LayoutComponent }
     ])
   

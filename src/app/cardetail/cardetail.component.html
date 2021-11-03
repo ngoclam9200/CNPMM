@@ -1,13 +1,13 @@
 <app-layout></app-layout>
 
-<!-- <div *ngFor="let data of array">ádddd</div> -->
+
 <div class="content">
     <div class="content_top">
 
         <div class="clear"></div>
     </div>
-   
-    <div  class="section group">
+
+    <div class="section group">
         <div class="cont-desc span_1_of_2">
             <div class="product-details">
                 <div class="grid images_3_of_2">
@@ -17,7 +17,7 @@
                                 <div class="slides_container">
                                     <br><br>
                                     <a href="#" target="_blank"><img src="{{Image}}" alt=" " /></a>
-                                   
+
                                 </div>
 
                             </div>
@@ -25,37 +25,28 @@
                     </div>
                 </div>
                 <div class="desc span_3_of_2">
-                    <h1> {{carName}} </h1> 
-                    <p style="font-size: 15px" > Năm sản xuất :{{yearOfManufacture}}</p>
+                    <h1> {{carName}} </h1>
+                    <p style="font-size: 15px"> Năm sản xuất :{{yearOfManufacture}}</p>
                     <div class="price">
-                        <p style="font-size: 15px;">Giá: <span >{{price}}$</span></p>
+                        <p style="font-size: 15px;">Giá: <span>{{price}}$</span></p>
                     </div>
                     <div class="share-desc">
-                        <!-- <div class="share">
-                            <p>Chia sẻ :</p>
-                            <ul>
-                                <li><a href="https://www.facebook.com/" target="_blank"><img src="" alt="" /></a></li>
-                                <li><a href="https://twitter.com/" target="_blank"><img src="" alt="" /></a></li>
-                            </ul>
-                        </div> -->
+
 
                         <div *ngIf="!isLogin" class="button">
-                            <h4><a style="cursor: pointer;" >Login to book</a></h4> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <h4><a style="cursor: pointer;">Login to book</a></h4> &nbsp;&nbsp;&nbsp;&nbsp;
 
                         </div>
-                        <!-- <div  class="button">
-                            <h4><a (click)="comparecar()" style="cursor: pointer;" href="">So sánh</a></h4>
 
-                        </div> -->
                         <div *ngIf="isLogin" class="button">
-                            <h4><a (click)="booking(_id,carName)" >Book</a></h4>
+                            <h4><a (click)="booking(_id,carName)">Book</a></h4>
 
                         </div>
                         <div class="clear"></div>
                     </div>
                     <div class="wish-list">
                         <ul>
-                            <li class="wish"><a >Thêm vào yêu thích</a></li>
+                            <li class="wish"><a>Thêm vào yêu thích</a></li>
                             <li class="compare"><a (click)="comparecar()">So sánh</a></li>
                         </ul>
                     </div>
@@ -64,32 +55,34 @@
             </div>
             <div class="product_desc">
                 <div id="horizontalTab">
-                   
+
 
 
                     <div class="resp-tabs-container">
 
                         <h4>
-                            Chi tiết về {{carName}} <br/>
-                           
+                            Chi tiết về {{carName}} <br />
+
 
                         </h4>
-                        <h5> <br/> {{CarInformation}} <br/></h5>
-                        <button onclick="document.getElementById('demo').style.display='block'" style="width:auto;" class="btn btn-primary" data-toggle="collapse">Thông số kĩ thuật {{carName}}</button>
-                        
+                        <h5> <br /> {{CarInformation}} <br /></h5>
+                        <button onclick="document.getElementById('demo').style.display='block'" style="width:auto;"
+                            class="btn btn-primary" data-toggle="collapse">Thông số kĩ thuật {{carName}}</button>
+
                         <h5 id="demo" class="collapse">
                             <br>
-                            <button  onclick="document.getElementById('demo').style.display='none'" style="width:auto;" class="btn btn-primary" data-toggle="collapse">Ẩn</button>
+                            <button onclick="document.getElementById('demo').style.display='none'" style="width:auto;"
+                                class="btn btn-primary" data-toggle="collapse">Ẩn</button>
 
                             <br />
-                            Tên xe: {{carName}}   <br />
-                            Màu sắc:   {{colour}}  <br />
-                            Đời xe: {{carLife}}  <br />
+                            Tên xe: {{carName}} <br />
+                            Màu sắc: {{colour}} <br />
+                            Đời xe: {{carLife}} <br />
                             Xuất xứ : {{origin}} <br />
-                            Dáng xe : {{body}} <br /> 
+                            Dáng xe : {{body}} <br />
                             Số chỗ : {{numberOfSeats}}<br />
-                            Năm sản xuất : {{yearOfManufacture}}  <br />
-                            Chiều dài: {{longs}} <br />                           
+                            Năm sản xuất : {{yearOfManufacture}} <br />
+                            Chiều dài: {{longs}} <br />
                             Kích thước tổng thể :{{overallSize}}<br />
                             Túi khí : {{airBag}} <br />
                             kiểu động cơ :{{engineType}}<br />
@@ -104,21 +97,21 @@
                         <script>
                             // Get the modal
                             var modal = document.getElementById('demo');
-                            
+
                             // When the user clicks anywhere outside of the modal, close it
-                            window.onclick = function(event) {
-                              if (event.target == modal) {
-                                modal.style.display = "none";
-                              }
-                            
+                            window.onclick = function (event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+
                             }
-                           
-                            </script>
-                      
+
+                        </script>
+
                     </div>
                 </div>
             </div>
-           
+
             <div class="content_bottom">
                 <div class="heading">
                     <h3>Sản phẩm liên quan đến {{companyName}}</h3>
@@ -129,39 +122,38 @@
                 <div class="clear"></div>
             </div>
             <div class="section group">
-               
-                    <div *ngFor="let data of arrayrelate" class="grid_1_of_4 images_1_of_4">
-                        <a href=""><img width="100px" height="100px" src="{{data.Image}}" alt="" /></a>
+
+                <div *ngFor="let data of arrayrelate" class="grid_1_of_4 images_1_of_4">
+                    <a href=""><img width="100px" height="100px" src="{{data.Image}}" alt="" /></a>
 
 
 
-                        <div class="price-details">
+                    <div class="price-details">
 
-                            <div class="price-number">
+                        <div class="price-number">
 
-                                <h5><span>  {{data.carName}} </span></h5>
-                                <h5><span style="color:red" class="rupees"> Giá : {{data.price}} </span></h5>
-                            </div>
-
-
+                            <h5><span> {{data.carName}} </span></h5>
+                            <h5><span style="color:red" class="rupees"> Giá : {{data.price}} </span></h5>
                         </div>
+
 
                     </div>
 
-                
+                </div>
+
+
 
             </div>
         </div>
         <div class="rightsidebar span_3_of_1">
             <h2> Danh mục hãng</h2>
             <ul>
-                <li *ngFor="let data of arrayCompany"> <a (click)="searchcarbycompany(data.carCompanyName)"> {{data.carCompanyName}} </a> </li>
-                
+                <li *ngFor="let data of arrayCompany"> <a (click)="searchcarbycompany(data.carCompanyName)">
+                        {{data.carCompanyName}} </a> </li>
+
             </ul>
 
         </div>
     </div>
-    
+
 </div>
-
-

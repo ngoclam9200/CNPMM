@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { FormBuilder, FormControl, FormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Observable, } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 @Component({
@@ -28,9 +28,7 @@ export class ScheduleuserComponent implements OnInit {
     
     console.log(this.today)
    
-    // const now = Date.now();
-    // const myFormattedDate = this.pipe.transform(now, 'short');
-    // console.log(myFormattedDate)
+
     this.formGroup=this.formBuilder.group(
       {
         _idUser : new FormControl("", [Validators.required]),

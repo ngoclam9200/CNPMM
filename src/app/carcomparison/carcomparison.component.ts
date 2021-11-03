@@ -1,12 +1,9 @@
-import { Component, OnInit, Inject, ApplicationModule} from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams , HttpRequest} from '@angular/common/http';
+import { Component, OnInit} from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {} from '@angular/common'
 
 import{Router} from '@angular/router'
-import {FormControl, FormsModule, Validators} from '@angular/forms';
-import{FormGroup} from'@angular/forms';
-import {Observable,} from 'rxjs';
-import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-carcomparison',
   templateUrl: './carcomparison.component.html',

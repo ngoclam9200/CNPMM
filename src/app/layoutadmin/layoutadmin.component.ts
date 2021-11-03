@@ -14,9 +14,7 @@ username:any
   }
   logout(){
    
-    // localStorage.removeItem('currentUser')
-    // localStorage.removeItem('userName')
-    // localStorage.removeItem('role')
+
     localStorage.clear()
     this.router.navigate(['/signin']);
     

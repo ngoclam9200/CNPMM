@@ -1,12 +1,7 @@
-import { Component, OnInit, Inject, ApplicationModule } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { } from '@angular/common'
-
 import { Router } from '@angular/router'
-import { FormBuilder, FormControl, FormsModule, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Observable, } from 'rxjs';
-import Swal from 'sweetalert2';
 import Chart from 'chart.js/auto';
 
 
@@ -21,11 +16,11 @@ export class StatisticsComponent implements OnInit {
   array: any = []
   arraymonth: any = []
   newarraymonth: any = []
-  
+
   arraynumberofbooking: any = []
   arraycompany: any = []
   newarraycompany: any = []
-  
+
   arraynumberofcompany: any = []
   arraybackgroundcolor: any = []
 
@@ -78,7 +73,7 @@ export class StatisticsComponent implements OnInit {
       }
       this.newarraymonth.unshift("")
       this.newarraymonth.sort()
-      
+
       console.log(this.newarraymonth)
       for (let i = 0; i < this.newarraymonth.length; i++) {
         var number = 0
@@ -101,7 +96,7 @@ export class StatisticsComponent implements OnInit {
           labels: this.newarraymonth,
           datasets: [{
             label: 'Number of bookings',
-            
+
             data: this.arraynumberofbooking,
 
 
@@ -115,9 +110,9 @@ export class StatisticsComponent implements OnInit {
             title: {
               display: true,
               text: 'Number of bookings per month',
-              align:'center',
-            
-              position:'bottom'
+              align: 'center',
+
+              position: 'bottom'
 
             }
           }
@@ -134,20 +129,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   statisticscompay() {
-
-
-
-
-
-
     let headers = new HttpHeaders();
-    // var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    // var token = currentUser.token; // your token
-    // console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-
-
-
     this.http.get(`http://127.0.0.1:3000/api/car/all`, { headers: headers }).subscribe(res => {
 
       this.data = res
@@ -155,7 +137,7 @@ export class StatisticsComponent implements OnInit {
       console.log(this.array)
       for (let i = 0; i < this.array.length; i++) {
         var t = this.array[i].companyName
-        
+
 
 
         this.arraycompany.push(t)
@@ -171,15 +153,15 @@ export class StatisticsComponent implements OnInit {
           this.newarraycompany.push(this.arraycompany[i])
         }
       }
-    
+
       this.newarraycompany.sort()
-      
+
       console.log(this.newarraycompany)
       for (let i = 0; i < this.newarraycompany.length; i++) {
         var number = 0
         for (let j = 0; j < this.array.length; j++) {
           var t = this.array[j].companyName
-         
+
           if (t == this.newarraycompany[i]) number++
 
         }
@@ -188,11 +170,11 @@ export class StatisticsComponent implements OnInit {
       }
       console.log(this.arraynumberofcompany)
 
-for (let i = 0; i < this.newarraycompany.length; i++) {
-     
-       
-       
-       this.arraybackgroundcolor.push("rgb("+Math.floor(Math.random() * (255 + 1))+","+Math.floor(Math.random() * (255 + 1))+","+Math.floor(Math.random() * (255 + 1))+")")
+      for (let i = 0; i < this.newarraycompany.length; i++) {
+
+
+
+        this.arraybackgroundcolor.push("rgb(" + Math.floor(Math.random() * (255 + 1)) + "," + Math.floor(Math.random() * (255 + 1)) + "," + Math.floor(Math.random() * (255 + 1)) + ")")
 
       }
       const myChart = new Chart("myChartcompany", {
@@ -203,13 +185,13 @@ for (let i = 0; i < this.newarraycompany.length; i++) {
           labels: this.newarraycompany,
           datasets: [{
             label: 'Number of bookings',
-            
+
             data: this.arraynumberofcompany,
 
 
-           backgroundColor:this.arraybackgroundcolor,
+            backgroundColor: this.arraybackgroundcolor,
             borderColor: '#82C0E7',
-            
+
           }]
         },
         options: {
@@ -217,14 +199,14 @@ for (let i = 0; i < this.newarraycompany.length; i++) {
             title: {
               display: true,
               text: 'Number of cars of company',
-              align:'center',
-            
-              position:'bottom'
+              align: 'center',
+
+              position: 'bottom'
 
             }
           }
         },
-        
+
 
       });
 

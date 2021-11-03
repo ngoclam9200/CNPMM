@@ -1,11 +1,9 @@
-import { Component, OnInit, Inject, ApplicationModule } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { } from '@angular/common'
 
 import { Router } from '@angular/router'
-import { FormControl, FormsModule, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Observable, } from 'rxjs';
+
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cardetail',
@@ -23,7 +21,7 @@ export class CardetailComponent implements OnInit {
   dataCompany: any
   arrayCompany: any = []
   iddetail: any
-  arraybooking:any=[]
+  arraybooking: any = []
   _id; Image; carName; CarInformation; airBag; body; carLife; colour; companyName; engineType; frontBrake; fuelConsumption; gear; longs; numberOfSeats; origin; overallSize; price; seat; status; tireParameters; topSpeed; wattage; yearOfManufacture: any
   constructor(private http: HttpClient, private router: Router) { }
   isLogin: boolean = false
@@ -46,9 +44,6 @@ export class CardetailComponent implements OnInit {
 
     console.log(this.idcar)
     let headers = new HttpHeaders();
-    // var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    // var token = currentUser.token; // your token
-    // console.log(token)
 
 
 
@@ -288,7 +283,7 @@ export class CardetailComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
- 
+
     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
@@ -308,7 +303,7 @@ export class CardetailComponent implements OnInit {
         }
 
 
-   }
+      }
       console.log(exitst)
       console.log(this.arraybooking.length)
       if (this.arraybooking.length == 4) {
@@ -336,8 +331,8 @@ export class CardetailComponent implements OnInit {
         })
 
       }
-     else if (exitst == true) {
-        
+      else if (exitst == true) {
+
         Swal.fire({
           title: 'you booked this car',
           text: "Are you want to go your booking",
@@ -363,7 +358,7 @@ export class CardetailComponent implements OnInit {
 
       }
 
-       else this.router.navigate(['/scheduleuser']);
+      else this.router.navigate(['/scheduleuser']);
 
     });
 

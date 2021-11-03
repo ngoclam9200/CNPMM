@@ -1,5 +1,5 @@
 <app-layoutadmin></app-layoutadmin>
-<div  style="margin-left: 300px;font-size: 30px;">List booking</div><br>
+<div style="margin-left: 300px;font-size: 30px;">List booking</div><br>
 <button (click)="ExportTOExcel()" style="margin-left: 300px;background-color: #82C0E7;">Download xlsx</button>
 <table border="1" class="styled-table" #TABLE #table>
     <thead>
@@ -23,6 +23,6 @@
             <td>{{data.Delete}}</td>
             <td><button (click)="deleteschedule(data._id)">Delete</button></td>
         </tr>
-      
+
     </tbody>
 </table>

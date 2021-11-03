@@ -1,41 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <body>
     <!-- Start of the header -->
-   
+
     <header>
-      
+
         <div class="inner">
-         
-          <div class="logo">
-            <div>
-                <!-- The below line can be an image or a h1, either will work -->
-                <img src="assets/LOGOLT.png" alt="Google logo">
-                <!-- <h1>My Logo</h1> -->
+
+            <div class="logo">
+                <div>
+                    <!-- The below line can be an image or a h1, either will work -->
+                    <img src="assets/LOGOLT.png" alt="Google logo">
+                    <!-- <h1>My Logo</h1> -->
+                </div>
             </div>
-        </div>
 
             <nav>
-             
-                  
+
+
                 <li><span><a [routerLink]='["/home"]'>Home</a></span></li>
                 <li><span><a [routerLink]='["/listcompanycar"]'>Brand</a></span></li>
                 <li><span><a [routerLink]='["/listcar"]'>Product</a></span></li>
                 <li><span><a [routerLink]='["/aboutus"]'>About us</a></span></li>
                 <li><span><a [routerLink]='["/contactus"]'>Contact us</a></span></li>
-                
-                <li ><span *ngIf ="!isLogin"><a [routerLink]='["/signin"]' >Sign in</a></span></li>
-                <li><span *ngIf ="!isLogin"><a [routerLink]='["/signup"]'>Sign up</a></span></li>
-                
-                <li><span *ngIf ="isLogin"><a [routerLink]='["/profileuser"]'>{{username}}</a></span></li>
-                <li><span *ngIf ="isLogin"><a (click)="logout()">Logout</a>></span></li>
-               
+
+                <li><span *ngIf="!isLogin"><a [routerLink]='["/signin"]'>Sign in</a></span></li>
+                <li><span *ngIf="!isLogin"><a [routerLink]='["/signup"]'>Sign up</a></span></li>
+
+                <li><span *ngIf="isLogin"><a [routerLink]='["/profileuser"]'>{{username}}</a></span></li>
+                <li><span *ngIf="isLogin"><a (click)="logout()">Logout</a>></span></li>
+
             </nav>
         </div>
     </header>
-    <!-- End of the header --> 
+    <!-- End of the header -->
     <router-outlet></router-outlet>
 </body>
+
 </html>

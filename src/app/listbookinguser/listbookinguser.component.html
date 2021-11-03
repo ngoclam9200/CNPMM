@@ -1,61 +1,49 @@
+<app-layout></app-layout>
+<div class="content">
+    <div class="content_top">
+        <div class="heading">
 
-        
 
-    
-    
-    
-  <app-layout></app-layout>
-  <div class="content">
-      <div class="content_top">
-          <div class="heading">
-  
-              
-          </div>
-         
-          <div class="clear"></div>
-      </div>
-   
- 
-     
-          <div class="section group">
-  
-             <div *ngFor="let data of arraydata" >
-                      <div (click)="currentbooking(data.carId)" class="grid_1_of_4 images_1_of_4">
-                          <a><img  src="{{data.Image}}" alt="" width="264" height="175" /></a>
-                          <br>
-                          <span style="color:red;cursor: pointer;"> {{data.carName}} </span>
-  
-                          <div class="price-details">
-  
-                              <div class="price-number">
-                                  <h1 style="text-align:left"><span style="color:cadetblue" class="rupees"> Price : {{data.price}}</span> </h1> <br />
-                                  <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Date booking :{{data.time}} </span> </h1> <br />
-  
-                                
-  
-  
-                              </div>
-  
-                              <!-- <div class="add-cart">
-  
-                                  <h4 *ngIf="isLogin"><a style="cursor: pointer;" (click)="booking(data._id,data.carName)">Booking</a></h4> <br>
-                                  <h4  *ngIf="!isLogin"><a style="cursor: pointer;">Login to book</a></h4> <br>
-                                  <h4><a style="cursor: pointer;" (click)="comparecar(data._id)">So Sánh</a></h4>
-  
-                              </div>
-   -->
-  
-                              <div class="clear"></div>
-                          </div>
-                      </div>
-                  </div>
-                     
-                    
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+
+
+    <div class="section group">
+
+        <div *ngFor="let data of arraydata">
+            <div (click)="currentbooking(data.carId)" class="grid_1_of_4 images_1_of_4">
+                <a><img src="{{data.Image}}" alt="" width="264" height="175" /></a>
+                <br>
+                <span style="color:red;cursor: pointer;"> {{data.carName}} </span>
+
+                <div class="price-details">
+
+                    <div class="price-number">
+                        <h1 style="text-align:left"><span style="color:cadetblue" class="rupees"> Price :
+                                {{data.price}}</span> </h1> <br />
+                        <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Date booking
+                                :{{data.time}} </span> </h1> <br />
+
+
+
+
+                    </div>
+
                  
-  
-              
-          </div>
-      
-     
-  </div>
 
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>

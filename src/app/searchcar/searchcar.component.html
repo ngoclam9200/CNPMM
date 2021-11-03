@@ -1,138 +1,72 @@
+<app-layout></app-layout>
+<div class="content">
+    <div class="content_top">
+        <div class="heading">
 
-        
+            <h3></h3>
 
-    
-    
-    
-  <app-layout></app-layout>
-  <div class="content">
-      <div class="content_top">
-          <div class="heading">
-  
-              <h3></h3>
-              
-              <a style="cursor: pointer;" *ngFor="let data of arrayCompany" (click)="searchcarbycompany(data.carCompanyName)" > {{data.carCompanyName}}       || </a>  
-            
-             
-            
-  
-          </div>
-          <div class="see">
-              <h5><a style="color:red"  [routerLink]='["/carcomparison"]'>Danh sách so sánh </a> <a *ngIf="isLogin" style="color:red"  [routerLink]='["/listbookinguser"]'> ||  Booking</a></h5>
-              <p></p>
-          </div>
-          <div class="clear"></div>
-      </div>
-      <!-- <p class="center">
-         
-              <b></b> @Html.RadioButton("Searchby", "theoy", false)<span> Tìm kiếm theo ý bạn</span>
-              <span> Hãng xe</span>
-  
-              <select name="Hangxe" id="hx">
-                  <option value="FORD" title="Title for Item 1">FORD</option>
-                  <option value="BMW" title="Title for Item 2">BMW</option>
-                  <option value="ROLLSROYCE" title="Title for Item 3">ROLLSROYCE</option>
-                  <option value="LANDROVER" title="Title for Item 1">LANDROVER</option>
-                  <option value="FERRARI" title="Title for Item 2">FERRARI</option>
-                  <option value="LEXUS" title="Title for Item 3">LEXUS</option>
-                  <option value="MAZDA" title="Title for Item 1">MAZDA</option>
-                  <option value="PORCHE" title="Title for Item 2">PORCHE</option>
-                  <option value="AUDI" title="Title for Item 3">AUDI</option>
-  
-              </select>
-              <span> Năm sản xuất</span>
-              <select name="Namsx" id="nsx">
-  
-                  <option value="2020" title="Title for Item 1">2020</option>
-                  <option value="2019" title="Title for Item 2">2019</option>
-                  <option value="2018" title="Title for Item 2">2018</option>
-  
-  
-  
-              </select>
-  
-              <span> Màu sắc</span>
-              <select name="Mausac" id="ms">
-  
-                  <option value="ĐEN" title="Title for Item 1">Đen</option>
-                  <option value="ĐỎ" title="Title for Item 2">Đỏ</option>
-                  <option value="TRẮNG" title="Title for Item 3">Trắng</option>
-                  <option value="VÀNG" title="Title for Item 1">Vàng</option>
-                  <option value="XANH" title="Title for Item 2">Xanh</option>
-  
-  
-              </select>
-              <span> Xuất xứ</span>
-              <select name="Xuatxu" id="xx">
-  
-                  <option value="NHẬP KHẨU" title="Title for Item 1">Nhập khẩu</option>
-                  <option value="Trong nước" title="Title for Item 2">Lắp ráp trong nước</option>
-  
-  
-  
-              </select>
-              <span> Giá</span>
-              <select name="Gia" id="gia">
-  
-                  <option value="1-5" title="Title for Item 1">Từ 1 đến 5 tỉ</option>
-                  <option value="5-10" title="Title for Item 2">5 đến 10 tỉ</option>
-                  <option value="10-15" title="Title for Item 3">10 đến 15 tỉ</option>
-                  <option value="0-1" title="Title for Item 1">Dưới 1 tỉ </option>
-                  <option value="tren15" title="Title for Item 2">Trên 15 tỉ </option>
-  
-  
-              </select>
-              <input class="btn-primary" type="submit" value="Search" />
-  
-          
-  
-      </p> -->
-  
-  
-  
-   
-          <div class="section group">
-  
-             <div *ngFor="let data of array" >
-                      <div class="grid_1_of_4 images_1_of_4">
-                          <a style="cursor: pointer;" (click)="currentcar(data._id)"><img src="{{data.Image}}" alt="" width="264" height="175" /></a>
-                          <br>
-                          <span (click)="currentcar(data._id)" style="color:red;cursor: pointer;"> {{data.carName}} </span>
-  
-                          <div class="price-details">
-  
-                              <div class="price-number">
-                                  <h1 style="text-align:left"><span style="color:cadetblue" class="rupees"> Xuất xứ : {{data.origin}}</span> </h1> <br />
-                                  <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Năm sx :{{data.yearOfManufacture}} </span> </h1> <br />
-                                  <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Màu sắc :{{data.colour}}</span> </h1> <br />
-  
-                                  <p><span class="rupees"> Giá : {{data.price}} </span></p>
-  
-  
-                              </div>
-  
-                              <div class="add-cart">
-  
-                                <h4 *ngIf="isLogin"><a style="cursor: pointer;" (click)="booking(data._id,data.carName)">Booking</a></h4> <br>
-                                <h4  *ngIf="!isLogin"><a  style="cursor: pointer;">Login to book</a></h4> <br>
-                                <h4><a style="cursor: pointer;" (click)="comparecar(data._id)">So Sánh</a></h4>
+            <a style="cursor: pointer;" *ngFor="let data of arrayCompany"
+                (click)="searchcarbycompany(data.carCompanyName)"> {{data.carCompanyName}} || </a>
 
-  
-                              </div>
-  
-  
-                              <div class="clear"></div>
-                          </div>
-                      </div>
-                  </div>
-            <div *ngIf="nocar"  style="text-align: center;font-size: 20px;"> There are no products from this {{nameCompany}} company </div>
-                     
-                    
-                 
-  
-              
-          </div>
-      
-     
-  </div>
 
+
+
+        </div>
+        <div class="see">
+            <h5><a style="color:red" [routerLink]='["/carcomparison"]'>Danh sách so sánh </a> <a *ngIf="isLogin"
+                    style="color:red" [routerLink]='["/listbookinguser"]'> || Booking</a></h5>
+            <p></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+ 
+    <div class="section group">
+
+        <div *ngFor="let data of array">
+            <div class="grid_1_of_4 images_1_of_4">
+                <a style="cursor: pointer;" (click)="currentcar(data._id)"><img src="{{data.Image}}" alt="" width="264"
+                        height="175" /></a>
+                <br>
+                <span (click)="currentcar(data._id)" style="color:red;cursor: pointer;"> {{data.carName}} </span>
+
+                <div class="price-details">
+
+                    <div class="price-number">
+                        <h1 style="text-align:left"><span style="color:cadetblue" class="rupees"> Xuất xứ :
+                                {{data.origin}}</span> </h1> <br />
+                        <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Năm sx
+                                :{{data.yearOfManufacture}} </span> </h1> <br />
+                        <h1 style="text-align:left "><span style="color:cadetblue" class="rupees"> Màu sắc
+                                :{{data.colour}}</span> </h1> <br />
+
+                        <p><span class="rupees"> Giá : {{data.price}} </span></p>
+
+
+                    </div>
+
+                    <div class="add-cart">
+
+                        <h4 *ngIf="isLogin"><a style="cursor: pointer;"
+                                (click)="booking(data._id,data.carName)">Booking</a></h4> <br>
+                        <h4 *ngIf="!isLogin"><a style="cursor: pointer;">Login to book</a></h4> <br>
+                        <h4><a style="cursor: pointer;" (click)="comparecar(data._id)">So Sánh</a></h4>
+
+
+                    </div>
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="nocar" style="text-align: center;font-size: 20px;"> There are no products from this {{nameCompany}}
+            company </div>
+
+
+
+
+
+    </div>
+
+
+</div>

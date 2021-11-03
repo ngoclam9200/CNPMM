@@ -60,8 +60,8 @@ import { ListbookinguserComponent } from './listbookinguser/listbookinguser.comp
     ScheduleuserComponent,
     StatisticsComponent,
     ListbookinguserComponent,
- 
-   
+
+
   ],
   imports: [
     BrowserModule,
@@ -71,31 +71,31 @@ import { ListbookinguserComponent } from './listbookinguser/listbookinguser.comp
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path:'signin', component:SigninComponent },
-     
-      {path:'signup', component:SignupComponent },
-      {path:'home', component:HomeComponent },
-      {path:'aboutus', component:AboutusComponent },
-      {path:'editabout', component:EditaboutComponent },
-      {path:'alluser',component:AlluserComponent},
-      {path:'productadmin',component:ProductadminComponent},
-      {path:'companycar',component:CompanycarComponent},
-      {path:'listcompanycar',component:ListcompanycarComponent},
-      {path:'contactus', component:ContactusComponent },
-      {path:'profileuser', component:ProfileuserComponent },
-      {path:'layoutadmin', component:LayoutadminComponent },
-      {path:'resetpassword',component:ResetpasswordComponent},
-      {path:'searchcar',component:SearchcarComponent},
-      {path:'listbookinguser',component:ListbookinguserComponent},
-      {path:'listcar',component:ListcarComponent},
-      {path:'cardetail',component:CardetailComponent},
-      {path:'carcomparison',component:CarcomparisonComponent},
-      {path:'scheduleadmin',component:ScheduleadminComponent},
-      {path:'scheduleuser',component:ScheduleuserComponent},
-      {path:'statistics',component:StatisticsComponent},
-      {path:'', component:LayoutComponent }
+      { path: 'signin', component: SigninComponent },
+
+      { path: 'signup', component: SignupComponent },
+      { path: '', component: HomeComponent },
+      { path: 'aboutus', component: AboutusComponent },
+      { path: 'editabout', component: EditaboutComponent },
+      { path: 'alluser', component: AlluserComponent },
+      { path: 'productadmin', component: ProductadminComponent },
+      { path: 'companycar', component: CompanycarComponent },
+      { path: 'listcompanycar', component: ListcompanycarComponent },
+      { path: 'contactus', component: ContactusComponent },
+      { path: 'profileuser', component: ProfileuserComponent },
+      { path: 'layoutadmin', component: LayoutadminComponent },
+      { path: 'resetpassword', component: ResetpasswordComponent },
+      { path: 'searchcar', component: SearchcarComponent },
+      { path: 'listbookinguser', component: ListbookinguserComponent },
+      { path: 'listcar', component: ListcarComponent },
+      { path: 'cardetail', component: CardetailComponent },
+      { path: 'carcomparison', component: CarcomparisonComponent },
+      { path: 'scheduleadmin', component: ScheduleadminComponent },
+      { path: 'scheduleuser', component: ScheduleuserComponent },
+      { path: 'statistics', component: StatisticsComponent },
+      { path: 'layout', component: LayoutComponent }
     ])
-  
+
 
   ],
   exports: [RouterModule],

@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, ApplicationModule } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { Component, OnInit} from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { } from '@angular/common'
 
 import { Router } from '@angular/router'
@@ -37,10 +37,9 @@ export class CompanycarComponent implements OnInit {
     this.getcompany()
     this.initForm()
   }
-cancle()
-{
-  window.location.reload()
-}
+  cancle() {
+    window.location.reload()
+  }
 
   initForm() {
 
@@ -56,7 +55,6 @@ cancle()
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
     console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
 

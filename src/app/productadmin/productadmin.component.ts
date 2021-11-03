@@ -1,13 +1,12 @@
-import { Component, OnInit, Inject, ApplicationModule } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { } from '@angular/common'
 
-import { Router } from '@angular/router'
-import { FormBuilder, FormControl, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Observable, } from 'rxjs';
 import Swal from 'sweetalert2';
-import * as fileSaver from 'file-saver';
+
 import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-productadmin',

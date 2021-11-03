@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { FormControl, FormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Observable, } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-profileuser',

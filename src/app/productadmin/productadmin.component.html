@@ -1,350 +1,445 @@
 <app-layoutadmin></app-layoutadmin>
-<link rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css">
 <div class="newproduct">
-    Create New Product <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create</button>
-    Download all car    <button id="a2" (click)="download()"  >Download</button>
+  Create New Product <button onclick="document.getElementById('id01').style.display='block'"
+    style="width:auto;">Create</button>
+  Download all car <button id="a2" (click)="download()">Download</button>
 </div>
-<div class="download" >
-  
+<div class="download">
+
 
 </div>
 
-<div >
-  <form [formGroup]="formGroupSearch" >
-    <input formControlName="search" class="inputsearch" placeholder="Enter the name of the car you want to find" type="text" name="" id="">
+<div>
+  <form [formGroup]="formGroupSearch">
+    <input formControlName="search" class="inputsearch" placeholder="Enter the name of the car you want to find"
+      type="text" name="" id="">
   </form>
-  
+
 </div>
 <div>
   <button (click)="searchCar()" class="btnsearch">Search</button>
 </div>
 <div>
-  <button *ngIf="isSearch" class="btnallcar" (click)="getcar()" >All car</button>
+  <button *ngIf="isSearch" class="btnallcar" (click)="getcar()">All car</button>
 </div>
+
 <body>
- 
+
   <div id="id01" class="modal">
-    <div  class="newproduct">
+    <div class="newproduct">
       <h3 style="color:white;">Create New Product </h3>
-  </div>
+    </div>
     <app-layoutadmin></app-layoutadmin>
-    <form [formGroup]="formGroupCar"   >
-       <div class="modal-content"    >
-         <div class="container">
-          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;" for="psw"><b>X</b> </a> <br>
+    <form [formGroup]="formGroupCar">
+      <div class="modal-content">
+        <div class="container">
+          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;"
+            for="psw"><b>X</b> </a> <br>
 
-           <label for="psw"><b>Name car</b></label> 
-           <small style="color: red;" *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  " > *Name car is required</small>
-           <input formControlName="carName" type="text"    required>
-          
-           <label for="psw"><b>Company Name</b></label>
-           <!-- <small style="color: red;" *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  " > *Name company is required</small> -->
+          <label for="psw"><b>Name car</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  ">
+            *Name car is required</small>
+          <input formControlName="carName" type="text" required>
 
-           <!-- <input formControlName="companyName" type="text" value=""   name="psw" required> -->
-           <select  formControlName="companyName" style="width: 100%;
+          <label for="psw"><b>Company Name</b></label>
+
+          <select formControlName="companyName" style="width: 100%;
            padding: 15px;
            margin: 5px 0 22px 0;
            display: inline-block;
            border: none;
-           background: #f1f1f1;" 
-            required>
-            <option  *ngFor="let data of arraycompany" [ngValue]="data.carCompanyName" >{{data.carCompanyName}}</option>
-           
-           
-        
+           background: #f1f1f1;" required>
+            <option *ngFor="let data of arraycompany" [ngValue]="data.carCompanyName">{{data.carCompanyName}}</option>
+
+
+
           </select>
-           <label for="psw-repeat"><b>Color</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  " > *Color is required</small>
+          <label for="psw-repeat"><b>Color</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  ">
+            *Color is required</small>
 
-           <input formControlName="colour" type="text" value=""   name="psw-repeat" required>
-           <label for="psw-repeat"><b>Car Life</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['carLife'].invalid && formGroupCar.controls['carLife'].touched) || checkfillcarLife  " > *Car life  is required</small>
+          <input formControlName="colour" type="text" value="" name="psw-repeat" required>
+          <label for="psw-repeat"><b>Car Life</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['carLife'].invalid && formGroupCar.controls['carLife'].touched) || checkfillcarLife  ">
+            *Car life is required</small>
 
-           <input formControlName="carLife" type="text" value="" name="psw-repeat" required>
-           <label for="email"><b>Origin</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['origin'].invalid && formGroupCar.controls['origin'].touched ) || checkfillorigin " > *origin is required</small>
+          <input formControlName="carLife" type="text" value="" name="psw-repeat" required>
+          <label for="email"><b>Origin</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['origin'].invalid && formGroupCar.controls['origin'].touched ) || checkfillorigin ">
+            *origin is required</small>
 
-           <input formControlName="origin" type="text" value=""  name="email"  required>
-           <label for="psw"><b>Body</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['body'].invalid && formGroupCar.controls['body'].touched) || checkfillbody  " > *Body is required</small>
+          <input formControlName="origin" type="text" value="" name="email" required>
+          <label for="psw"><b>Body</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['body'].invalid && formGroupCar.controls['body'].touched) || checkfillbody  ">
+            *Body is required</small>
 
-           <input type="text"  formControlName="body" value=""   name="psw" required>
-           <label for="psw"><b>Number of seats</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['numberOfSeats'].invalid && formGroupCar.controls['numberOfSeats'].touched) || checkfillnumberOfSeats  " > *Number of seats is required</small>
+          <input type="text" formControlName="body" value="" name="psw" required>
+          <label for="psw"><b>Number of seats</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['numberOfSeats'].invalid && formGroupCar.controls['numberOfSeats'].touched) || checkfillnumberOfSeats  ">
+            *Number of seats is required</small>
 
-           <input  type="text"formControlName="numberOfSeats" value=""   name="psw" required>
-           <label for="psw"><b>Year of Manufacture</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['yearOfManufacture'].invalid && formGroupCar.controls['yearOfManufacture'].touched ) || checkfillyearOfManufacture " > *Year of manufacture is required</small>
+          <input type="text" formControlName="numberOfSeats" value="" name="psw" required>
+          <label for="psw"><b>Year of Manufacture</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['yearOfManufacture'].invalid && formGroupCar.controls['yearOfManufacture'].touched ) || checkfillyearOfManufacture ">
+            *Year of manufacture is required</small>
 
-           <input type="text"  formControlName="yearOfManufacture" value=""   name="psw" required>
-           <label for="psw"><b>Long</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['longs'].invalid && formGroupCar.controls['longs'].touched ) || checkfilllongs " > *Long is required</small>
+          <input type="text" formControlName="yearOfManufacture" value="" name="psw" required>
+          <label for="psw"><b>Long</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['longs'].invalid && formGroupCar.controls['longs'].touched ) || checkfilllongs ">
+            *Long is required</small>
 
-           <input  type="text"formControlName="longs" value=""   name="psw" required>
-           <label for="psw"><b>Overall Size</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['overallSize'].invalid && formGroupCar.controls['overallSize'].touched ) || checkfilloverallSize " > *Overall size  is required</small>
+          <input type="text" formControlName="longs" value="" name="psw" required>
+          <label for="psw"><b>Overall Size</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['overallSize'].invalid && formGroupCar.controls['overallSize'].touched ) || checkfilloverallSize ">
+            *Overall size is required</small>
 
-           <input type="text"  formControlName="overallSize" value=""   name="psw" required>
-              
-           <label for="psw"><b>Top speed</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['topSpeed'].invalid && formGroupCar.controls['topSpeed'].touched ) || checkfilltopSpeed " > *Top speed is required</small>
+          <input type="text" formControlName="overallSize" value="" name="psw" required>
 
-           <input type="text"  formControlName="topSpeed" value=""   name="psw" required>
-           
-           <label for="psw"><b>Air Bag</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['airBag'].invalid && formGroupCar.controls['airBag'].touched) || checkfillairBag  " > *Air bag is required</small>
+          <label for="psw"><b>Top speed</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['topSpeed'].invalid && formGroupCar.controls['topSpeed'].touched ) || checkfilltopSpeed ">
+            *Top speed is required</small>
 
-           <input  type="text"formControlName="airBag" value=""   name="psw" required>
-           <label for="psw"><b>Seat</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['seat'].invalid && formGroupCar.controls['seat'].touched) || checkfillseat  " > *Seat is required</small>
+          <input type="text" formControlName="topSpeed" value="" name="psw" required>
 
-           <input type="text"  formControlName="seat" value=""   name="psw" required>
-           <label for="psw"><b>Engine Type</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['engineType'].invalid && formGroupCar.controls['engineType'].touched ) || checkfillengineType " > *Engine type is required</small>
+          <label for="psw"><b>Air Bag</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['airBag'].invalid && formGroupCar.controls['airBag'].touched) || checkfillairBag  ">
+            *Air bag is required</small>
 
-           <input  type="text"formControlName="engineType" value=""   name="psw" required>
-           <label for="psw"><b>Tire Parameter </b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['tireParameters'].invalid && formGroupCar.controls['tireParameters'].touched) || checkfilltireParameters  " > *tire parameter is required</small>
+          <input type="text" formControlName="airBag" value="" name="psw" required>
+          <label for="psw"><b>Seat</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['seat'].invalid && formGroupCar.controls['seat'].touched) || checkfillseat  ">
+            *Seat is required</small>
 
-           <input type="text"  formControlName="tireParameters" value=""   name="psw" required>
-           <label for="psw"><b>Front Brake</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['frontBrake'].invalid && formGroupCar.controls['frontBrake'].touched ) || checkfillfrontBrake " > *Front brake is required</small>
+          <input type="text" formControlName="seat" value="" name="psw" required>
+          <label for="psw"><b>Engine Type</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['engineType'].invalid && formGroupCar.controls['engineType'].touched ) || checkfillengineType ">
+            *Engine type is required</small>
 
-           <input  type="text"formControlName="frontBrake" value=""   name="psw" required>
-           <label for="psw"><b>Wattage</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['wattage'].invalid && formGroupCar.controls['wattage'].touched ) || checkfillwattage " > *Wattage  is required</small>
+          <input type="text" formControlName="engineType" value="" name="psw" required>
+          <label for="psw"><b>Tire Parameter </b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['tireParameters'].invalid && formGroupCar.controls['tireParameters'].touched) || checkfilltireParameters  ">
+            *tire parameter is required</small>
 
-           <input type="text"  formControlName="wattage" value=""   name="psw" required>
-           <label for="psw"><b>Gear</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['gear'].invalid && formGroupCar.controls['gear'].touched ) || checkfillgear " > *Gear  is required</small>
+          <input type="text" formControlName="tireParameters" value="" name="psw" required>
+          <label for="psw"><b>Front Brake</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['frontBrake'].invalid && formGroupCar.controls['frontBrake'].touched ) || checkfillfrontBrake ">
+            *Front brake is required</small>
 
-           <input  type="text"formControlName="gear" value=""   name="psw" required>
-           <label for="psw"><b>Status</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['status'].invalid && formGroupCar.controls['status'].touched) || checkfillstatus " > *Satus  is required</small>
+          <input type="text" formControlName="frontBrake" value="" name="psw" required>
+          <label for="psw"><b>Wattage</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['wattage'].invalid && formGroupCar.controls['wattage'].touched ) || checkfillwattage ">
+            *Wattage is required</small>
 
-           <input type="text"  formControlName="status" value=""   name="psw" required>
-           <label for="psw"><b>Fuel Consumption </b></label>
-           <small style="color: red;" *ngIf="  (formGroupCar.controls['fuelConsumption'].invalid && formGroupCar.controls['fuelConsumption'].touched ) ||checkfillfuelConsumption " > *Fuel Consumption  is required</small>
+          <input type="text" formControlName="wattage" value="" name="psw" required>
+          <label for="psw"><b>Gear</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['gear'].invalid && formGroupCar.controls['gear'].touched ) || checkfillgear ">
+            *Gear is required</small>
 
-            <input  type="text"formControlName="fuelConsumption" value=""  name="psw" required>
-           <label for="psw"><b>Price</b></label>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['price'].invalid && formGroupCar.controls['price'].touched ) || checkfillprice " > *Price  is required</small>
+          <input type="text" formControlName="gear" value="" name="psw" required>
+          <label for="psw"><b>Status</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['status'].invalid && formGroupCar.controls['status'].touched) || checkfillstatus ">
+            *Satus is required</small>
 
-           <input class="inputprice" type="number"formControlName="price" value=""   name="psw" required> <br> <br>
-           <label for="psw"><b>Image</b></label>
-           <small style="color: red;" *ngIf=" checkfillImage" > *Image  is required</small>
+          <input type="text" formControlName="status" value="" name="psw" required>
+          <label for="psw"><b>Fuel Consumption </b></label>
+          <small style="color: red;"
+            *ngIf="  (formGroupCar.controls['fuelConsumption'].invalid && formGroupCar.controls['fuelConsumption'].touched ) ||checkfillfuelConsumption ">
+            *Fuel Consumption is required</small>
 
-           <input  type="file" (change)="onFileSelected($event)"    name="psw" required> <br> <br>
-           
-           
-           <label for="email"><b>Car Information</b></label> <br>
-           <small style="color: red;" *ngIf="(formGroupCar.controls['CarInformation'].invalid && formGroupCar.controls['CarInformation'].touched ) || checkfillCarInformation " > * is required</small>
+          <input type="text" formControlName="fuelConsumption" value="" name="psw" required>
+          <label for="psw"><b>Price</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['price'].invalid && formGroupCar.controls['price'].touched ) || checkfillprice ">
+            *Price is required</small>
 
-           <textarea ng-model="myTextarea" formControlName="CarInformation" type="text" value="" placeholder="Enter Email" style="width:580px;height:200px"  required> </textarea>
+          <input class="inputprice" type="number" formControlName="price" value="" name="psw" required> <br> <br>
+          <label for="psw"><b>Image</b></label>
+          <small style="color: red;" *ngIf=" checkfillImage"> *Image is required</small>
 
-           <div class="clearfix">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-            <button type="submit" (click)="Createproduct()" class="signupbtn" >Create</button>
+          <input type="file" (change)="onFileSelected($event)" name="psw" required> <br> <br>
+
+
+          <label for="email"><b>Car Information</b></label> <br>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['CarInformation'].invalid && formGroupCar.controls['CarInformation'].touched ) || checkfillCarInformation ">
+            * is required</small>
+
+          <textarea ng-model="myTextarea" formControlName="CarInformation" type="text" value=""
+            placeholder="Enter Email" style="width:580px;height:200px" required> </textarea>
+
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'"
+              class="cancelbtn">Cancel</button>
+            <button type="submit" (click)="Createproduct()" class="signupbtn">Create</button>
           </div>
-         </div>
         </div>
-      
-       
-      </form>
-      
-     </div>
-  <script>
-  // Get the modal
-  var modal = document.getElementById('id01');
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
- 
-  </script>
-  
-  </body>
-  <body>
+      </div>
 
-    
-    
-    <div id="id02" class="modal">
-      <div  class="newproduct">
-        <h3 style="color:white;">Update my car </h3>
-     
-    </div>
-      <app-layoutadmin></app-layoutadmin>
-      <form [formGroup]="formGroupCar"   >
-         <div class="modal-content"    >
-           <div class="container">
-            <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;" for="psw"><b>X</b> </a> <br>
-             <label for="psw"><b>Name car</b></label> 
-             <small style="color: red;" *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  " > *Name car is required</small>
-             <input formControlName="carName" type="text"    required>
-            
-             <label for="psw"><b>Company Name</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  " > *Name company is required</small>
-  
-             <input formControlName="companyName" type="text" value=""   name="psw" required>
-             
-             <label for="psw-repeat"><b>Color</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  " > *Color is required</small>
-  
-             <input formControlName="colour" type="text" value=""   name="psw-repeat" required>
-             <label for="psw-repeat"><b>Car Life</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['carLife'].invalid && formGroupCar.controls['carLife'].touched) || checkfillcarLife  " > *Car life  is required</small>
-  
-             <input formControlName="carLife" type="text" value="" name="psw-repeat" required>
-             <label for="email"><b>Origin</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['origin'].invalid && formGroupCar.controls['origin'].touched ) || checkfillorigin " > *origin is required</small>
-  
-             <input formControlName="origin" type="text" value=""  name="email"  required>
-             <label for="psw"><b>Body</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['body'].invalid && formGroupCar.controls['body'].touched) || checkfillbody  " > *Body is required</small>
-  
-             <input type="text"  formControlName="body" value=""   name="psw" required>
-             <label for="psw"><b>Number of seats</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['numberOfSeats'].invalid && formGroupCar.controls['numberOfSeats'].touched) || checkfillnumberOfSeats  " > *Number of seats is required</small>
-  
-             <input  type="text"formControlName="numberOfSeats" value=""   name="psw" required>
-             <label for="psw"><b>Year of Manufacture</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['yearOfManufacture'].invalid && formGroupCar.controls['yearOfManufacture'].touched ) || checkfillyearOfManufacture " > *Year of manufacture is required</small>
-  
-             <input type="text"  formControlName="yearOfManufacture" value=""   name="psw" required>
-             <label for="psw"><b>Long</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['longs'].invalid && formGroupCar.controls['longs'].touched ) || checkfilllongs " > *Long is required</small>
-  
-             <input  type="text"formControlName="longs" value=""   name="psw" required>
-             <label for="psw"><b>Overall Size</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['overallSize'].invalid && formGroupCar.controls['overallSize'].touched ) || checkfilloverallSize " > *Overall size  is required</small>
-  
-             <input type="text"  formControlName="overallSize" value=""   name="psw" required>
-                
-             <label for="psw"><b>Top speed</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['topSpeed'].invalid && formGroupCar.controls['topSpeed'].touched ) || checkfilltopSpeed " > *Top speed is required</small>
-  
-             <input type="text"  formControlName="topSpeed" value=""   name="psw" required>
-             
-             <label for="psw"><b>Air Bag</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['airBag'].invalid && formGroupCar.controls['airBag'].touched) || checkfillairBag  " > *Air bag is required</small>
-  
-             <input  type="text"formControlName="airBag" value=""   name="psw" required>
-             <label for="psw"><b>Seat</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['seat'].invalid && formGroupCar.controls['seat'].touched) || checkfillseat  " > *Seat is required</small>
-  
-             <input type="text"  formControlName="seat" value=""   name="psw" required>
-             <label for="psw"><b>Engine Type</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['engineType'].invalid && formGroupCar.controls['engineType'].touched ) || checkfillengineType " > *Engine type is required</small>
-  
-             <input  type="text"formControlName="engineType" value=""   name="psw" required>
-             <label for="psw"><b>Tire Parameter </b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['tireParameters'].invalid && formGroupCar.controls['tireParameters'].touched) || checkfilltireParameters  " > *tire parameter is required</small>
-  
-             <input type="text"  formControlName="tireParameters" value=""   name="psw" required>
-             <label for="psw"><b>Front Brake</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['frontBrake'].invalid && formGroupCar.controls['frontBrake'].touched ) || checkfillfrontBrake " > *Front brake is required</small>
-  
-             <input  type="text"formControlName="frontBrake" value=""   name="psw" required>
-             <label for="psw"><b>Wattage</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['wattage'].invalid && formGroupCar.controls['wattage'].touched ) || checkfillwattage " > *Wattage  is required</small>
-  
-             <input type="text"  formControlName="wattage" value=""   name="psw" required>
-             <label for="psw"><b>Gear</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['gear'].invalid && formGroupCar.controls['gear'].touched ) || checkfillgear " > *Gear  is required</small>
-  
-             <input  type="text"formControlName="gear" value=""   name="psw" required>
-             <label for="psw"><b>Status</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['status'].invalid && formGroupCar.controls['status'].touched) || checkfillstatus " > *Satus  is required</small>
-  
-             <input type="text"  formControlName="status" value=""   name="psw" required>
-             <label for="psw"><b>Fuel Consumption </b></label>
-             <small style="color: red;" *ngIf="  (formGroupCar.controls['fuelConsumption'].invalid && formGroupCar.controls['fuelConsumption'].touched ) ||checkfillfuelConsumption " > *Fuel Consumption  is required</small>
-  
-              <input  type="text"formControlName="fuelConsumption" value=""  name="psw" required>
-             <label for="psw"><b>Price</b></label>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['price'].invalid && formGroupCar.controls['price'].touched ) || checkfillprice " > *Price  is required</small>
-  
-             <input class="inputprice" type="number"formControlName="price" value=""   name="psw" required> <br> <br>
-             <label for="psw"><b>Image current      </b></label>
-             <br>
-             <small style="color: red;" *ngIf=" checkfillImage" > *Image  is required</small>
-             <img *ngIf="!newimage" src="{{Image}}" width="100px" height="100px" alt=""> <br>
-             <img *ngIf="newimage" src="{{imagePreview}}" width="100px" height="100px" alt=""> <br>
-             <button class="updateimg" id="files" (click)="changenewimage()" onclick="document.getElementById('file').click(); return false" >Update image</button>
-            
-          
-            
-            
-             <input id="file" style="display: none;"  type="file" (change)="onFileSelected($event)"    name="file" required> <br> <br>
-             
-             
-             <label for="email"><b>Car Information</b></label> <br>
-             <small style="color: red;" *ngIf="(formGroupCar.controls['CarInformation'].invalid && formGroupCar.controls['CarInformation'].touched ) || checkfillCarInformation " > * is required</small>
-  
-             <textarea ng-model="myTextarea" formControlName="CarInformation" type="text" value="" placeholder="Enter Email" style="width:580px;height:100px"  required> </textarea>
-  
-             <div class="clearfix">
-              <button type="button" onclick="document.getElementById('id02').style.display='none' "  class="cancelbtn">Cancel</button>
-              <button type="submit" (click)="Updatecar()"  class="signupbtn" >Change</button>
-            </div>
-           </div>
-          </div>
-        
-         
-        </form>
-        
-       </div>
-    <script>
+
+    </form>
+
+  </div>
+  <script>
     // Get the modal
-    var modal = document.getElementById('id02');
-    
+    var modal = document.getElementById('id01');
+
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     }
-   
-    </script>
-    
-    </body>
+
+  </script>
+
+</body>
+
+<body>
+
+
+
+  <div id="id02" class="modal">
+    <div class="newproduct">
+      <h3 style="color:white;">Update my car </h3>
+
+    </div>
+    <app-layoutadmin></app-layoutadmin>
+    <form [formGroup]="formGroupCar">
+      <div class="modal-content">
+        <div class="container">
+          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;"
+            for="psw"><b>X</b> </a> <br>
+          <label for="psw"><b>Name car</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['carName'].invalid && formGroupCar.controls['carName'].touched)  || checkfillcarName  ">
+            *Name car is required</small>
+          <input formControlName="carName" type="text" required>
+
+          <label for="psw"><b>Company Name</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  ">
+            *Name company is required</small>
+
+          <input formControlName="companyName" type="text" value="" name="psw" required>
+
+          <label for="psw-repeat"><b>Color</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['colour'].invalid && formGroupCar.controls['colour'].touched) || checkfillcolour  ">
+            *Color is required</small>
+
+          <input formControlName="colour" type="text" value="" name="psw-repeat" required>
+          <label for="psw-repeat"><b>Car Life</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['carLife'].invalid && formGroupCar.controls['carLife'].touched) || checkfillcarLife  ">
+            *Car life is required</small>
+
+          <input formControlName="carLife" type="text" value="" name="psw-repeat" required>
+          <label for="email"><b>Origin</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['origin'].invalid && formGroupCar.controls['origin'].touched ) || checkfillorigin ">
+            *origin is required</small>
+
+          <input formControlName="origin" type="text" value="" name="email" required>
+          <label for="psw"><b>Body</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['body'].invalid && formGroupCar.controls['body'].touched) || checkfillbody  ">
+            *Body is required</small>
+
+          <input type="text" formControlName="body" value="" name="psw" required>
+          <label for="psw"><b>Number of seats</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['numberOfSeats'].invalid && formGroupCar.controls['numberOfSeats'].touched) || checkfillnumberOfSeats  ">
+            *Number of seats is required</small>
+
+          <input type="text" formControlName="numberOfSeats" value="" name="psw" required>
+          <label for="psw"><b>Year of Manufacture</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['yearOfManufacture'].invalid && formGroupCar.controls['yearOfManufacture'].touched ) || checkfillyearOfManufacture ">
+            *Year of manufacture is required</small>
+
+          <input type="text" formControlName="yearOfManufacture" value="" name="psw" required>
+          <label for="psw"><b>Long</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['longs'].invalid && formGroupCar.controls['longs'].touched ) || checkfilllongs ">
+            *Long is required</small>
+
+          <input type="text" formControlName="longs" value="" name="psw" required>
+          <label for="psw"><b>Overall Size</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['overallSize'].invalid && formGroupCar.controls['overallSize'].touched ) || checkfilloverallSize ">
+            *Overall size is required</small>
+
+          <input type="text" formControlName="overallSize" value="" name="psw" required>
+
+          <label for="psw"><b>Top speed</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['topSpeed'].invalid && formGroupCar.controls['topSpeed'].touched ) || checkfilltopSpeed ">
+            *Top speed is required</small>
+
+          <input type="text" formControlName="topSpeed" value="" name="psw" required>
+
+          <label for="psw"><b>Air Bag</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['airBag'].invalid && formGroupCar.controls['airBag'].touched) || checkfillairBag  ">
+            *Air bag is required</small>
+
+          <input type="text" formControlName="airBag" value="" name="psw" required>
+          <label for="psw"><b>Seat</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['seat'].invalid && formGroupCar.controls['seat'].touched) || checkfillseat  ">
+            *Seat is required</small>
+
+          <input type="text" formControlName="seat" value="" name="psw" required>
+          <label for="psw"><b>Engine Type</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['engineType'].invalid && formGroupCar.controls['engineType'].touched ) || checkfillengineType ">
+            *Engine type is required</small>
+
+          <input type="text" formControlName="engineType" value="" name="psw" required>
+          <label for="psw"><b>Tire Parameter </b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['tireParameters'].invalid && formGroupCar.controls['tireParameters'].touched) || checkfilltireParameters  ">
+            *tire parameter is required</small>
+
+          <input type="text" formControlName="tireParameters" value="" name="psw" required>
+          <label for="psw"><b>Front Brake</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['frontBrake'].invalid && formGroupCar.controls['frontBrake'].touched ) || checkfillfrontBrake ">
+            *Front brake is required</small>
+
+          <input type="text" formControlName="frontBrake" value="" name="psw" required>
+          <label for="psw"><b>Wattage</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['wattage'].invalid && formGroupCar.controls['wattage'].touched ) || checkfillwattage ">
+            *Wattage is required</small>
+
+          <input type="text" formControlName="wattage" value="" name="psw" required>
+          <label for="psw"><b>Gear</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['gear'].invalid && formGroupCar.controls['gear'].touched ) || checkfillgear ">
+            *Gear is required</small>
+
+          <input type="text" formControlName="gear" value="" name="psw" required>
+          <label for="psw"><b>Status</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['status'].invalid && formGroupCar.controls['status'].touched) || checkfillstatus ">
+            *Satus is required</small>
+
+          <input type="text" formControlName="status" value="" name="psw" required>
+          <label for="psw"><b>Fuel Consumption </b></label>
+          <small style="color: red;"
+            *ngIf="  (formGroupCar.controls['fuelConsumption'].invalid && formGroupCar.controls['fuelConsumption'].touched ) ||checkfillfuelConsumption ">
+            *Fuel Consumption is required</small>
+
+          <input type="text" formControlName="fuelConsumption" value="" name="psw" required>
+          <label for="psw"><b>Price</b></label>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['price'].invalid && formGroupCar.controls['price'].touched ) || checkfillprice ">
+            *Price is required</small>
+
+          <input class="inputprice" type="number" formControlName="price" value="" name="psw" required> <br> <br>
+          <label for="psw"><b>Image current </b></label>
+          <br>
+          <small style="color: red;" *ngIf=" checkfillImage"> *Image is required</small>
+          <img *ngIf="!newimage" src="{{Image}}" width="100px" height="100px" alt=""> <br>
+          <img *ngIf="newimage" src="{{imagePreview}}" width="100px" height="100px" alt=""> <br>
+          <button class="updateimg" id="files" (click)="changenewimage()"
+            onclick="document.getElementById('file').click(); return false">Update image</button>
+
+
+
+
+          <input id="file" style="display: none;" type="file" (change)="onFileSelected($event)" name="file" required>
+          <br> <br>
+
+
+          <label for="email"><b>Car Information</b></label> <br>
+          <small style="color: red;"
+            *ngIf="(formGroupCar.controls['CarInformation'].invalid && formGroupCar.controls['CarInformation'].touched ) || checkfillCarInformation ">
+            * is required</small>
+
+          <textarea ng-model="myTextarea" formControlName="CarInformation" type="text" value=""
+            placeholder="Enter Email" style="width:580px;height:100px" required> </textarea>
+
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id02').style.display='none' "
+              class="cancelbtn">Cancel</button>
+            <button type="submit" (click)="Updatecar()" class="signupbtn">Change</button>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+
+  </div>
+  <script>
+    // Get the modal
+    var modal = document.getElementById('id02');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  </script>
+
+</body>
 <div style="font-size: 15px;" class="contain" *ngIf="novalue">No cars found</div>
-<table *ngIf="!novalue" class="contain" border="1" >
+<table *ngIf="!novalue" class="contain" border="1">
   <thead>
-  <tr >
-    <th  style="text-align: center">Image</th>
-    <th  style="text-align: center">Name car</th>
-    <th style="text-align: center">Color</th>
-    <th  style="text-align: center">Number of seats</th>
-    <th  style="text-align: center">Company name</th>
-    <th style="text-align: center">Details&Edit</th>
-    <th style="text-align: center">Delete</th>
-   
-  
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let data of array">
+    <tr>
+      <th style="text-align: center">Image</th>
+      <th style="text-align: center">Name car</th>
+      <th style="text-align: center">Color</th>
+      <th style="text-align: center">Number of seats</th>
+      <th style="text-align: center">Company name</th>
+      <th style="text-align: center">Details&Edit</th>
+      <th style="text-align: center">Delete</th>
 
-    <td> <img src="{{data.Image}}" width="100px" height="100px" alt=""> </td>
-    <td>  {{data.carName}}</td>
-    <td>  {{data.colour}}</td>
-    <td>  {{data.numberOfSeats}}</td>
-  
-    <td>  {{data.companyName}}</td>
-    <td> <button onclick="document.getElementById('id02').style.display='block'"  (click)="currentcar(data._id)" style="width:auto;" >Details&Edit</button> </td>
-    <td> <button (click)="deleteCar(data._id)" class="cancelbtn">Delete</button> </td>
-  
-    
-    
-   
-    
-  
 
-  </tr>
-</tbody>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of array">
+
+      <td> <img src="{{data.Image}}" width="100px" height="100px" alt=""> </td>
+      <td> {{data.carName}}</td>
+      <td> {{data.colour}}</td>
+      <td> {{data.numberOfSeats}}</td>
+
+      <td> {{data.companyName}}</td>
+      <td> <button onclick="document.getElementById('id02').style.display='block'" (click)="currentcar(data._id)"
+          style="width:auto;">Details&Edit</button> </td>
+      <td> <button (click)="deleteCar(data._id)" class="cancelbtn">Delete</button> </td>
+
+
+
+
+
+
+
+    </tr>
+  </tbody>
 </table>
-

@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, ApplicationModule } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { } from '@angular/common'
 
 import { Router } from '@angular/router'
-import { FormBuilder, FormControl, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { Observable, } from 'rxjs';
+
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-listcar',
@@ -47,7 +47,6 @@ export class ListcarComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
     console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
 
@@ -111,99 +110,6 @@ export class ListcarComponent implements OnInit {
     this.router.navigate(['/searchcar']);
   }
 
-  // comparecar(id)
-  // { console.log(localStorage.getItem('arraycomparecar'))
-  //   if(localStorage.getItem('arraycomparecar')==null)
-  //   {
-  //     localStorage.setItem('arraycomparecar', id);
-  //     this.router.navigate(['/carcomparison']);
-  //   }
-  //   else
-  //   { this.idcar=localStorage.getItem('arraycomparecar')
-  //     if(this.idcar.length>96) 
-  //     {
-  //       alert('comparison list cannot be more than 4 cars , you need to delete  ')
-  //       this.router.navigate(['/carcomparison']);
-  //     }
-  //     else
-  //     {
-
-  //       var existing = localStorage.getItem('arraycomparecar');
-  //       this.idcar=localStorage.getItem('arraycomparecar')
-  //       var i=0
-  //       var length=this.idcar //74
-  //       var start=0
-  //      var numberstring=Math.floor(length.length/24)
-
-  //       while(i< numberstring)
-  //       {  
-
-  //         var t=this.idcar.indexOf(",")
-
-  //         if(t==-1) this.arrayid.push(this.idcar)
-  //         else this.arrayid.push(this.idcar.slice(start,t))
-
-  //         this.idcar=this.idcar.slice(t+1,this.idcar.length)
-
-
-  //         i++;
-  //         console.log(this.arrayid)
-
-  //       }
-  //       for(let i=0; i<this.arrayid.length;i++)
-  //       {
-  //         if(this.arrayid[i]==id) 
-  //         Swal.fire({
-  //           title: 'This vehicle already exists in the comparison list ',
-  //           text: "Do you want to go to the comparison page?",
-  //           icon: 'warning',
-  //           showCancelButton: true,
-  //           confirmButtonColor: '#3085d6',
-  //           cancelButtonColor: '#d33',
-  //           confirmButtonText: 'Yes'
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-
-
-
-
-  //             this.router.navigate(['/carcomparison']);
-
-
-  //           }
-
-  //         })
-
-  //         return
-
-  //       }
-
-  //       var data
-
-  //       data = existing ? existing.split(',') : [];
-
-
-  //      data.push(id);
-
-
-  //    localStorage.setItem('arraycomparecar', data.toString());
-
-
-  //    this.router.navigate(['/carcomparison']);
-  //     }
-
-
-
-
-  // }
-
-
-
-
-
-
-
-  // }
 
   comparecar(id) {
     console.log(localStorage.getItem('arraycomparecar'))

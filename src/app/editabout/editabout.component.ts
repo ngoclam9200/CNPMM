@@ -1,10 +1,10 @@
-import { Component, OnInit, Inject, ApplicationModule} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {FormControl, FormsModule, Validators} from '@angular/forms';
-//import { from } from 'rxjs/observable/from';
+import { Component, OnInit} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {FormControl, Validators} from '@angular/forms';
+
 import{FormGroup} from'@angular/forms';
 import {Observable} from 'rxjs';
-import { RouterModule } from '@angular/router';
+
 import {Router} from '@angular/router';
 
 @Component({

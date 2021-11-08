@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {} from '@angular/common'
 
 import{Router} from '@angular/router'
-
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-carcomparison',
   templateUrl: './carcomparison.component.html',
@@ -16,7 +16,7 @@ arrayid:any=[]
 arrayiddelete:any=[]
 array:any=[]
 nocarcompare:boolean
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private api:ApiService) { }
 
   ngOnInit(): void {
     this.currentcar()
@@ -26,10 +26,10 @@ nocarcompare:boolean
   currentcar()
   { 
     this.idcar=localStorage.getItem('arraycomparecar')
-    console.log(this.idcar)
+   
     if(this.idcar=="" || this.idcar==null) this.nocarcompare=true
     else this.nocarcompare=false
-    console.log(this.nocarcompare)
+  
     if(this.idcar!=null)
     {
       if(this.idcar.length==24) 
@@ -54,7 +54,7 @@ nocarcompare:boolean
       
      
       i++;
-      console.log(this.arrayid)
+      
 
     }
 
@@ -69,13 +69,13 @@ nocarcompare:boolean
   
   for(let i=0; i<this.arrayid.length;i++)
   {
-      this.http.get(`http://127.0.0.1:3000/api/car/?getId=`+ this.arrayid[i], { headers: headers }).subscribe(res => {
-       console.log(res)
+      this.http.get(this.api.apicar+`?getId=`+ this.arrayid[i], { headers: headers }).subscribe(res => {
+     
        this.data=res
        this.array.push(this.data.data)
    
 
-       console.log(this.array)
+      
   
       });
   
@@ -117,21 +117,17 @@ nocarcompare:boolean
     const index = this.arrayiddelete.indexOf(id);
 if (index > -1) {
   this.arrayiddelete.splice(index, 1);
-  console.log(this.arrayiddelete)
+
   localStorage.setItem('arraycomparecar',"")
 }
 
 for(let i=0 ;i<this.arrayiddelete.length;i++)
-  { //var existing=localStorage.getItem('arraycomparecar')
-  //   var data
-   
-  //   data = existing?existing.split(',') : [];
+  { 
  if(localStorage.getItem('arraycomparecar')=="") localStorage.setItem('arraycomparecar',this.arrayiddelete[i])
  else localStorage.setItem('arraycomparecar',localStorage.getItem('arraycomparecar')+","+this.arrayiddelete[i])
-  //  data.push(this.arrayiddelete[i]);
-  //  console.log(data)
+ 
   }
-  //localStorage.setItem('arraycomparecar', data.toString());
+ 
   this.arrayiddelete=[]
   window.location.reload()
 

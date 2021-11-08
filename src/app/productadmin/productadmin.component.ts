@@ -6,8 +6,10 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Observable, } from 'rxjs';
 import Swal from 'sweetalert2';
-
+import { ApiService } from 'src/services/api.service';
 import * as XLSX from 'xlsx';
+
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-productadmin',
   templateUrl: './productadmin.component.html',
@@ -35,22 +37,22 @@ export class ProductadminComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;
-      console.log(this.imagePreview)
-    };
+     };
     reader.readAsDataURL(this.selectedFile);
   }
   formGroupCar: FormGroup
   formGroupSearch: FormGroup
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private api:ApiService, private router:Router) { }
 
   ngOnInit(): void {
+    this.api.checkRole()
+
 
     this.getcar()
     this.getcompany()
 
 
-    // console.log(this.array)
-    this.formGroupCar = this.formBuilder.group({
+     this.formGroupCar = this.formBuilder.group({
       carName: new FormControl("", [Validators.required]),
       companyName: new FormControl("", [Validators.required]),
       colour: new FormControl("", [Validators.required]),
@@ -80,24 +82,21 @@ export class ProductadminComponent implements OnInit {
     this.formGroupSearch = this.formBuilder.group({
       search: new FormControl("", [Validators.required]),
     })
+  
 
   }
   getcompany() {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+ 
 
 
-
-    this.http.get(`http://127.0.0.1:3000/api/company/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
-      this.data = res
+    this.http.get(this.api.apicompany+`all`, { headers: headers }).subscribe(res => {
+       this.data = res
 
       this.arraycompany = this.data.data
-      console.log(this.array)
-
+ 
 
 
 
@@ -109,31 +108,26 @@ export class ProductadminComponent implements OnInit {
   }
 
 
-  getcar() {
+  async getcar() {
     this.isSearch = false
     this.novalue = false
     let headers = new HttpHeaders();
-    var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    var token = currentUser.token; // your token
-    console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+ 
+    
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/car/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
-      this.data = res
+    this.http.get(this.api.apicar+`all`, { headers: headers }).subscribe(res => {
+       this.data = res
 
       this.array = this.data.data
-      console.log(this.array)
-
+ 
 
 
 
 
     });
-
-
+    
 
   }
 
@@ -141,23 +135,20 @@ export class ProductadminComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
-    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-    return this.http.post(`http://127.0.0.1:3000/api/car/create`, data, { headers: headers });
+     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.api.apicar+`create`, data, { headers: headers });
   }
   Createproduct() {
 
 
 
 
-    console.log(this.formGroupCar.valid)
-
+ 
     if (this.imagePreview != null) {
       this.formGroupCar.controls['Image'].setValue(this.imagePreview)
 
     }
-    console.log(this.formGroupCar.value)
-
+ 
     if (this.formGroupCar.valid) {
       Swal.fire({
         title: 'Are you sure?',
@@ -172,8 +163,7 @@ export class ProductadminComponent implements OnInit {
           this.create(this.formGroupCar.value).subscribe((result) => {
 
             if (result) {
-              console.log(result);
-
+ 
             }
 
           });
@@ -245,8 +235,7 @@ export class ProductadminComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-    console.log(token)
-
+ 
     Swal.fire({
       title: 'Are you sure?',
       text: "",
@@ -257,9 +246,8 @@ export class ProductadminComponent implements OnInit {
       confirmButtonText: 'Yes,delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.delete(`http://127.0.0.1:3000/api/car/?deleteId=` + id, { headers: headers }).subscribe(res => {
-          console.log(res)
-
+        this.http.delete(this.api.apicar+`?deleteId=` + id, { headers: headers }).subscribe(res => {
+ 
         });
         Swal.fire(
           'Success!',
@@ -284,18 +272,13 @@ export class ProductadminComponent implements OnInit {
   currentcar(id) {
 
 
-    //this.idcar=localStorage.getItem('idcar')
-    this.idcar = id
-    // console.log(this.idcar)
-    let headers = new HttpHeaders();
-    // var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    // var token = currentUser.token; // your token
-    // console.log(token)
+     this.idcar = id
+     let headers = new HttpHeaders();
+ 
 
 
 
-
-    this.http.get(`http://127.0.0.1:3000/api/car/?getId=` + id, { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apicar+`?getId=` + id, { headers: headers }).subscribe(res => {
 
       this.data = res
       this.formGroupCar = this.formBuilder.group({
@@ -327,8 +310,7 @@ export class ProductadminComponent implements OnInit {
       });
       this.Image = this.data.data.Image
 
-      console.log(this.Image)
-
+ 
     });
 
 
@@ -339,8 +321,7 @@ export class ProductadminComponent implements OnInit {
       this.formGroupCar.controls['Image'].setValue(this.imagePreview)
 
     }
-    console.log(this.formGroupCar.value)
-    if (this.formGroupCar.valid) {
+     if (this.formGroupCar.valid) {
       Swal.fire({
         title: 'Are you sure?',
         text: "",
@@ -352,8 +333,7 @@ export class ProductadminComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.update(this.formGroupCar.value).subscribe((result) => {
-            console.log(result)
-
+ 
 
             if (result)
               console.log(result);
@@ -403,8 +383,7 @@ export class ProductadminComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-    // console.log(token)
-    return this.http.post(`http://127.0.0.1:3000/api/car/?updateId=` + this.idcar, data, { headers: headers });
+     return this.http.post(this.api.apicar+`?updateId=` + this.idcar, data, { headers: headers });
   }
   changenewimage() {
     if (this.imagePreview != null) {
@@ -417,12 +396,10 @@ export class ProductadminComponent implements OnInit {
       let headers = new HttpHeaders();
       var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
       var token = currentUser.token; // your token
-      console.log(token)
-      // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+ 
 
 
-
-      this.http.get(`http://127.0.0.1:3000/api/car/car_name?search=` + this.formGroupSearch.controls['search'].value, { headers: headers }).subscribe(res => {
+      this.http.get(this.api.apicar+`car_name?search=` + this.formGroupSearch.controls['search'].value, { headers: headers }).subscribe(res => {
 
         this.data = res
 
@@ -447,25 +424,23 @@ export class ProductadminComponent implements OnInit {
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/car/all`).subscribe(res => {
-      console.log(res)
-      this.data = res
+    this.http.get(this.api.apicar+`all`).subscribe(res => {
+       this.data = res
 
       this.array = this.data.data
-      var templateToExcel:any = [["Name Car","Company Name","colour","Car life","Origin",
-      "body","Number of seat","year of manufacture","longs","Overall size","fuel","Top speed",
-      "air bag","seat","engine type","tire parametter","frontbrake","wattage","gear","status","price","Car information "]]
-      for (let i = 0; i < this.array.length; i++) { 
-        
-       templateToExcel.push([this.array[i].carName,this.array[i].companyName,this.array[i].colour,this.array[i].carLife,this.array[i].origin,
-        this.array[i].body,this.array[i].numberOfSeats,this.array[i].yearOfManufacture,this.array[i].longs,this.array[i].overallSize,this.array[i].fuelConsumption,this.array[i].topSpeed,
-        this.array[i].airBag,this.array[i].seat,this.array[i].engineType,this.array[i].tireParameters,this.array[i].frontBrake,this.array[i].wattage,this.array[i].gear,this.array[i].status,this.array[i].price,this.array[i].CarInformation])
+      var templateToExcel: any = [["Name Car", "Company Name", "colour", "Car life", "Origin",
+        "body", "Number of seat", "year of manufacture", "longs", "Overall size", "fuel", "Top speed",
+        "air bag", "seat", "engine type", "tire parametter", "frontbrake", "wattage", "gear", "status", "price", "Car information "]]
+      for (let i = 0; i < this.array.length; i++) {
+
+        templateToExcel.push([this.array[i].carName, this.array[i].companyName, this.array[i].colour, this.array[i].carLife, this.array[i].origin,
+        this.array[i].body, this.array[i].numberOfSeats, this.array[i].yearOfManufacture, this.array[i].longs, this.array[i].overallSize, this.array[i].fuelConsumption, this.array[i].topSpeed,
+        this.array[i].airBag, this.array[i].seat, this.array[i].engineType, this.array[i].tireParameters, this.array[i].frontBrake, this.array[i].wattage, this.array[i].gear, this.array[i].status, this.array[i].price, this.array[i].CarInformation])
 
 
 
       }
-      console.log(templateToExcel)
-this.exportTemplateAsExcel(templateToExcel)
+       this.exportTemplateAsExcel(templateToExcel)
 
 
 
@@ -481,8 +456,7 @@ this.exportTemplateAsExcel(templateToExcel)
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, "All car" + ".xlsx");
   }
-  cancleupdate()
-  {
+  cancleupdate() {
     window.location.reload()
   }
 }

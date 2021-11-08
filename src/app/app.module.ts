@@ -33,6 +33,7 @@ import { ScheduleadminComponent } from './scheduleadmin/scheduleadmin.component'
 import { ScheduleuserComponent } from './scheduleuser/scheduleuser.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ListbookinguserComponent } from './listbookinguser/listbookinguser.component';
+import { NotfoundpageComponent } from './notfoundpage/notfoundpage.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { ListbookinguserComponent } from './listbookinguser/listbookinguser.comp
     ScheduleuserComponent,
     StatisticsComponent,
     ListbookinguserComponent,
+    NotfoundpageComponent,
 
 
   ],
@@ -75,6 +77,7 @@ import { ListbookinguserComponent } from './listbookinguser/listbookinguser.comp
 
       { path: 'signup', component: SignupComponent },
       { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'aboutus', component: AboutusComponent },
       { path: 'editabout', component: EditaboutComponent },
       { path: 'alluser', component: AlluserComponent },
@@ -93,7 +96,8 @@ import { ListbookinguserComponent } from './listbookinguser/listbookinguser.comp
       { path: 'scheduleadmin', component: ScheduleadminComponent },
       { path: 'scheduleuser', component: ScheduleuserComponent },
       { path: 'statistics', component: StatisticsComponent },
-      { path: 'layout', component: LayoutComponent }
+      { path: 'layout', component: LayoutComponent },
+      {path:'notfoundpage', component:NotfoundpageComponent}
     ])
 
 

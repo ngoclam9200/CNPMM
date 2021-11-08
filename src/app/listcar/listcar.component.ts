@@ -5,7 +5,7 @@ import { } from '@angular/common'
 import { Router } from '@angular/router'
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-
+import { ApiService } from 'src/services/api.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-listcar',
@@ -23,7 +23,7 @@ export class ListcarComponent implements OnInit {
   idcar: any
   arrayid: any = []
   arraybooking:any=[]
-  constructor(private http: HttpClient, private router: Router, private formBuider: FormBuilder) { }
+  constructor(private http: HttpClient, private router: Router, private formBuider: FormBuilder, private api:ApiService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('currentUser') == null) this.isLogin = false
@@ -46,17 +46,14 @@ export class ListcarComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
+ 
 
 
-
-    this.http.get(`http://127.0.0.1:3000/api/car/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
-      this.data = res
+    this.http.get(this.api.apicar+`all`, { headers: headers }).subscribe(res => {
+       this.data = res
 
       this.array = this.data.data
-      console.log(this.array)
-
+ 
 
 
     });
@@ -68,18 +65,15 @@ export class ListcarComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/company/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
-      this.dataCompany = res
+
+    this.http.get(this.api.apicompany+`all`, { headers: headers }).subscribe(res => {
+       this.dataCompany = res
 
       this.arrayCompany = this.dataCompany.data
-      console.log(this.arrayCompany)
-
+ 
 
 
 
@@ -90,8 +84,7 @@ export class ListcarComponent implements OnInit {
 
   }
   currentcar(id) {
-    console.log(id)
-
+ 
     localStorage.setItem('idcar', id)
     this.router.navigate(['/cardetail']);
 
@@ -112,8 +105,7 @@ export class ListcarComponent implements OnInit {
 
 
   comparecar(id) {
-    console.log(localStorage.getItem('arraycomparecar'))
-    if (localStorage.getItem('arraycomparecar') == null || localStorage.getItem('arraycomparecar') == "") {
+     if (localStorage.getItem('arraycomparecar') == null || localStorage.getItem('arraycomparecar') == "") {
       localStorage.setItem('arraycomparecar', id);
       this.router.navigate(['/carcomparison']);
     }
@@ -155,16 +147,14 @@ export class ListcarComponent implements OnInit {
         while (i < numberstring) {
 
           var t = this.idcar.indexOf(",")
-          console.log(t)
-          if (t == -1) this.arrayid.push(this.idcar)
+           if (t == -1) this.arrayid.push(this.idcar)
           else this.arrayid.push(this.idcar.slice(start, t))
 
           this.idcar = this.idcar.slice(t + 1, this.idcar.length)
 
 
           i++;
-          console.log(this.arrayid)
-
+ 
         }
         for (let i = 0; i < this.arrayid.length; i++) {
           if (this.arrayid[i] == id) {
@@ -229,14 +219,12 @@ export class ListcarComponent implements OnInit {
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/schedule/user`, { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apischedule+`user`, { headers: headers }).subscribe(res => {
 
       this.data = res
 
       this.arraybooking = this.data.data
-      console.log(this.arraybooking)
-      console.log(idcar)
-      for (let i = 0; i < this.arraybooking.length; i++) {
+       for (let i = 0; i < this.arraybooking.length; i++) {
         if (idcar == this.arraybooking[i].carId) {
           exitst = true
           break
@@ -245,9 +233,7 @@ export class ListcarComponent implements OnInit {
 
 
    }
-      console.log(exitst)
-      console.log(this.arraybooking.length)
-      if (this.arraybooking.length == 4) {
+       if (this.arraybooking.length == 4) {
         Swal.fire({
           title: 'You can only book 4 cars',
           text: "Are you want to go your booking",

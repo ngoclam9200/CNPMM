@@ -5,6 +5,7 @@ import { } from '@angular/common'
 import { Router } from '@angular/router'
 
 import * as XLSX from 'xlsx';
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-alluser',
   templateUrl: './alluser.component.html',
@@ -24,58 +25,27 @@ export class AlluserComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'AllUser' + today + '.xlsx');
   }
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,private api:ApiService) { }
 
   ngOnInit(): void {
-
-    if (localStorage.getItem('currentUser') == null) {
-      this.router.navigate(['/signin']);
-
-    }
-    else this.getuser()
+    this.api.checkRole()
+    this.getuser()
   }
   getuser() {
-
-
-
-
-
-
-    let headers = new HttpHeaders();
-    var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    var token = currentUser.token; // your token
-    console.log(token)
-    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-
-
-
-    this.http.get(`http://127.0.0.1:3000/api/user/all`, { headers: headers }).subscribe(res => {
-
-      this.data = res
+    
+  this.api.getuser().subscribe(res=>{
+       this.data = res
 
       this.array = this.data.data
-      console.log(this.array)
+   
 
       for (let i = 0; i < this.array.length; i++) {
         if (this.array[i].role == "USER")
           this.arrayalluser.push(this.array[i])
       }
-      console.log(this.arrayalluser)
-
-
-
-
-
-
-
-
-
-
-
-    });
-
-
-
+  })
+ 
+  
 
   }
 

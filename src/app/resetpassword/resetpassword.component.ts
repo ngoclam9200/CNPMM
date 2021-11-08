@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import {  Router } from '@angular/router';
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-resetpassword',
   templateUrl: './resetpassword.component.html',
@@ -10,7 +11,7 @@ import {  Router } from '@angular/router';
 })
 export class ResetpasswordComponent implements OnInit {
   formGroupresetpass : FormGroup;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private api:ApiService) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -28,10 +29,8 @@ export class ResetpasswordComponent implements OnInit {
   }
   Resetpassword(){
     if (this.formGroupresetpass.valid) {
-      console.log(this.formGroupresetpass.value)
-      this.reset(this.formGroupresetpass.value).subscribe((result) => {
-        console.log(result)
-
+       this.reset(this.formGroupresetpass.value).subscribe((result) => {
+ 
 
         if (result)
          
@@ -57,7 +56,7 @@ export class ResetpasswordComponent implements OnInit {
     // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
-    return this.http.post(`http://127.0.0.1:3000/api/user/reset_password`, data);
+    return this.http.post(this.api.apiuser+`reset_password`, data);
   }
 
 }

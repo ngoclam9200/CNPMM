@@ -7,7 +7,7 @@ import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Observable, } from 'rxjs';
 import Swal from 'sweetalert2';
-
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-companycar',
   templateUrl: './companycar.component.html',
@@ -27,15 +27,17 @@ export class CompanycarComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;
-      console.log(this.imagePreview)
-    };
+     };
     reader.readAsDataURL(this.selectedFile);
   }
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private api:ApiService) { }
 
   ngOnInit(): void {
-    this.getcompany()
-    this.initForm()
+    this.api.checkRole()
+      this.getcompany()
+      this.initForm()
+    
+    
   }
   cancle() {
     window.location.reload()
@@ -54,17 +56,16 @@ export class CompanycarComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
+   
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/company/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
+    this.http.get(this.api.apicompany+`all`, { headers: headers }).subscribe(res => {
+      
       this.data = res
 
       this.array = this.data.data
-      console.log(this.array)
-
+ 
 
 
 
@@ -80,9 +81,8 @@ export class CompanycarComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
-    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-    return this.http.post(`http://127.0.0.1:3000/api/company/create`, data, { headers: headers });
+     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.api.apicompany+`create`, data, { headers: headers });
   }
   createCompany() {
 
@@ -97,8 +97,7 @@ export class CompanycarComponent implements OnInit {
         carCompanyName: carCompanyName,
       });
     }
-    console.log(this.formGroup.value)
-    if (this.formGroup.valid) {
+     if (this.formGroup.valid) {
       Swal.fire({
         title: 'Are you sure?',
         text: "",
@@ -112,8 +111,7 @@ export class CompanycarComponent implements OnInit {
           this.create(this.formGroup.value).subscribe((result) => {
 
             if (result) {
-              console.log(result);
-
+ 
             }
 
           });
@@ -155,8 +153,7 @@ export class CompanycarComponent implements OnInit {
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
-    console.log(token)
-
+ 
     Swal.fire({
       title: 'Are you sure?',
       text: "",
@@ -167,9 +164,8 @@ export class CompanycarComponent implements OnInit {
       confirmButtonText: 'Yes,delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.delete(`http://127.0.0.1:3000/api/company/?deleteId=` + id, { headers: headers }).subscribe(res => {
-          console.log(res)
-
+        this.http.delete(this.api.apicompany+`?deleteId=` + id, { headers: headers }).subscribe(res => {
+ 
         });
         Swal.fire(
           'Success!',

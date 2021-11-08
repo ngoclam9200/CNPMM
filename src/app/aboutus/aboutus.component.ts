@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-aboutus',
   templateUrl: './aboutus.component.html',
@@ -13,7 +13,7 @@ export class AboutusComponent implements OnInit {
   isadmin = false
   nameCompany; phoneNumber; fax; description; address; email: any;
   constructor(private http: HttpClient,
-    private router: Router) { }
+    private router: Router, private api:ApiService) { }
 
   ngOnInit(): void {
     this.getdata()
@@ -21,14 +21,9 @@ export class AboutusComponent implements OnInit {
 
   }
   getdata() {
-
-
-
-
-    this.http.get(`http://127.0.0.1:3000/api/about/?about=61654bb70e5cb46aa4f7d781`).subscribe((res) => {
+    this.http.get( this.api.apiabout+`?about=61654bb70e5cb46aa4f7d781`).subscribe((res) => {
       this.data = res;
-      console.log(res)
-      console.log(this.data.data.nameCompany)
+     
       this.nameCompany = this.data.data.nameCompany
       this.phoneNumber = this.data.data.phoneNumber
       this.fax = this.data.data.fax

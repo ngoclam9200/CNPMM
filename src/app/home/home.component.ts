@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {} from '@angular/common'
-
+import { ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ data:any
 array:any=[]
 tmparray:any=[]
 usenum:any=[]
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private api:ApiService) { }
 
   ngOnInit(): void {
     this.getcar()
@@ -29,12 +29,11 @@ usenum:any=[]
       let headers = new HttpHeaders();
       var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
       var token = currentUser.token; // your token
-      console.log(token)
-     // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+      // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
   
   
   
-      this.http.get(`http://127.0.0.1:3000/api/car/all`, { headers: headers }).subscribe(res => {
+      this.http.get(this.api.apicar+`all`, { headers: headers }).subscribe(res => {
        
         this.data=res
 
@@ -58,8 +57,7 @@ usenum:any=[]
         this.array.push(this.tmparray[t1])
         this.array.push(this.tmparray[t2])
         this.array.push(this.tmparray[t3])
-        console.log(t1, t2,t3)
-        
+         
 
        }
        else this.array=this.tmparray

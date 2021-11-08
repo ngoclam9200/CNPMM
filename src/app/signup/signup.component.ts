@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
-
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   formGroup: FormGroup;
   constructor(private http: HttpClient,
-    private router: Router) { }
+    private router: Router, private api:ApiService) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -34,8 +34,7 @@ export class SignupComponent implements OnInit {
 
   }
   register(data): Observable<any> {
-    console.log("I am server");
-    return this.http.post(`http://127.0.0.1:3000/api/user/register`, data);
+     return this.http.post(this.api.apiuser+`register`, data);
   }
   registerProces() {
 
@@ -56,8 +55,7 @@ export class SignupComponent implements OnInit {
         this.register(this.formGroup.value).subscribe((result) => {
 
           if (result)
-            console.log(result);
-          alert("Đăng kí thành công");
+           alert("Đăng kí thành công");
           this.router.navigate(['/signin']);
 
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormControl, Validators} from '@angular/forms';
 import{FormGroup} from'@angular/forms';
 import {Observable} from 'rxjs';
-
+import { ApiService } from 'src/services/api.service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-signin',
@@ -15,7 +15,7 @@ export class SigninComponent implements OnInit {
   formGroup : FormGroup;
  
   constructor(private http:HttpClient,
-    private router:Router) { }
+    private router:Router, private api:ApiService) { }
   
   ngOnInit() {
     
@@ -24,7 +24,7 @@ export class SigninComponent implements OnInit {
   }
   login(data):Observable<any>{
     
-    return this.http.post(`http://127.0.0.1:3000/api/user/login`, data);
+    return this.http.post(this.api.apiuser+`login`, data);
   }
   initForm(){
     this.role=false
@@ -40,11 +40,9 @@ export class SigninComponent implements OnInit {
       
       
       this.login(this.formGroup.value).subscribe((result) =>{
-console.log(result)
-        this.data=result
+         this.data=result
         this.role=this.data.data.role
-        console.log(this.role);
-       
+        
           
          
             
@@ -55,16 +53,14 @@ console.log(result)
 
             localStorage.setItem('currentUser',JSON.stringify( {token:this.data.data.token}) );
             localStorage.setItem('role',this.role );
-            console.log(localStorage.getItem('currentUser'))
-
+ 
             this.router.navigate(['/alluser']);
            }
            if(result.message=="Login Success!" && this.role=="USER")
            {
             localStorage.setItem('userName',this.formGroup.controls['userName'].value)
             localStorage.setItem('currentUser',JSON.stringify( {token:this.data.data.token}) );
-            console.log(localStorage.getItem('currentUser'))
-            this.router.navigate(['/listcar']);
+             this.router.navigate(['/listcar']);
            }
 
             

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { } from '@angular/common'
 import { Router } from '@angular/router'
 import Chart from 'chart.js/auto';
-
+import { ApiService } from 'src/services/api.service';
 
 
 @Component({
@@ -24,13 +24,15 @@ export class StatisticsComponent implements OnInit {
   arraynumberofcompany: any = []
   arraybackgroundcolor: any = []
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private api:ApiService) { }
   ngOnInit(): void {
+    this.api.checkRole()
     this.statisticsbooking()
     this.statisticscompay()
+    }
 
 
-  }
+  
 
 
   statisticsbooking() {
@@ -43,17 +45,15 @@ export class StatisticsComponent implements OnInit {
     let headers = new HttpHeaders();
     var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     var token = currentUser.token; // your token
-    console.log(token)
-    headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/schedule/all`, { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apischedule+`all`, { headers: headers }).subscribe(res => {
 
       this.data = res
       this.array = this.data.data
-      console.log(this.array)
-      for (let i = 0; i < this.array.length; i++) {
+       for (let i = 0; i < this.array.length; i++) {
         var t = this.array[i].time
         t = t.slice(0, 7)
 
@@ -74,8 +74,7 @@ export class StatisticsComponent implements OnInit {
       this.newarraymonth.unshift("")
       this.newarraymonth.sort()
 
-      console.log(this.newarraymonth)
-      for (let i = 0; i < this.newarraymonth.length; i++) {
+       for (let i = 0; i < this.newarraymonth.length; i++) {
         var number = 0
         for (let j = 0; j < this.array.length; j++) {
           var t = this.array[j].time
@@ -86,8 +85,7 @@ export class StatisticsComponent implements OnInit {
         this.arraynumberofbooking.push(number)
 
       }
-      console.log(this.arraynumberofbooking)
-
+ 
       const myChart = new Chart("myChart", {
 
         type: 'line',
@@ -130,12 +128,11 @@ export class StatisticsComponent implements OnInit {
 
   statisticscompay() {
     let headers = new HttpHeaders();
-    this.http.get(`http://127.0.0.1:3000/api/car/all`, { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apicar+`all`, { headers: headers }).subscribe(res => {
 
       this.data = res
       this.array = this.data.data
-      console.log(this.array)
-      for (let i = 0; i < this.array.length; i++) {
+       for (let i = 0; i < this.array.length; i++) {
         var t = this.array[i].companyName
 
 
@@ -156,8 +153,7 @@ export class StatisticsComponent implements OnInit {
 
       this.newarraycompany.sort()
 
-      console.log(this.newarraycompany)
-      for (let i = 0; i < this.newarraycompany.length; i++) {
+       for (let i = 0; i < this.newarraycompany.length; i++) {
         var number = 0
         for (let j = 0; j < this.array.length; j++) {
           var t = this.array[j].companyName
@@ -168,8 +164,7 @@ export class StatisticsComponent implements OnInit {
         this.arraynumberofcompany.push(number)
 
       }
-      console.log(this.arraynumberofcompany)
-
+ 
       for (let i = 0; i < this.newarraycompany.length; i++) {
 
 

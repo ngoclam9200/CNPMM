@@ -5,6 +5,7 @@ import { } from '@angular/common'
 import { Router } from '@angular/router'
 
 import Swal from 'sweetalert2';
+import { ApiService } from 'src/services/api.service';
 @Component({
   selector: 'app-cardetail',
   templateUrl: './cardetail.component.html',
@@ -23,7 +24,7 @@ export class CardetailComponent implements OnInit {
   iddetail: any
   arraybooking: any = []
   _id; Image; carName; CarInformation; airBag; body; carLife; colour; companyName; engineType; frontBrake; fuelConsumption; gear; longs; numberOfSeats; origin; overallSize; price; seat; status; tireParameters; topSpeed; wattage; yearOfManufacture: any
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private api:ApiService) { }
   isLogin: boolean = false
   ngOnInit(): void {
 
@@ -31,8 +32,7 @@ export class CardetailComponent implements OnInit {
     this.currentcar()
     this.getlistcompanyname()
     this.getcarrelate()
-    console.log(localStorage.getItem('arraycomparecar'))
-    console.log(localStorage.getItem('currentUser'))
+  
     if (localStorage.getItem('currentUser') == null) this.isLogin = false
     else this.isLogin = true
 
@@ -42,14 +42,14 @@ export class CardetailComponent implements OnInit {
 
     this.idcar = localStorage.getItem('idcar')
 
-    console.log(this.idcar)
+    
     let headers = new HttpHeaders();
 
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/car/?getId=` + this.idcar, { headers: headers }).subscribe(res => {
-      console.log(res)
+    this.http.get(this.api.apicar+`?getId=` + this.idcar, { headers: headers }).subscribe(res => {
+    
       this.data = res
       this.Image = this.data.data.Image
       this.carName = this.data.data.carName
@@ -75,7 +75,7 @@ export class CardetailComponent implements OnInit {
       this.CarInformation = this.data.data.CarInformation
       this.companyName = this.data.data.companyName
       this._id = this.data.data._id
-      console.log(this.companyName)
+     
       localStorage.setItem('nameCompany', this.companyName)
       localStorage.setItem('idcardetail', this._id)
 
@@ -97,19 +97,15 @@ export class CardetailComponent implements OnInit {
   }
   getlistcompanyname() {
     let headers = new HttpHeaders();
-    // var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-    // var token = currentUser.token; // your token
-    // console.log(token)
-    // headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
+  
 
 
-
-    this.http.get(`http://127.0.0.1:3000/api/company/all`, { headers: headers }).subscribe(res => {
-      console.log(res)
+    this.http.get(this.api.apicompany+`all`, { headers: headers }).subscribe(res => {
+  
       this.dataCompany = res
 
       this.arrayCompany = this.dataCompany.data
-      console.log(this.arrayCompany)
+     
 
 
 
@@ -137,7 +133,7 @@ export class CardetailComponent implements OnInit {
 
     let headers = new HttpHeaders();
 
-    this.http.get(`http://127.0.0.1:3000/api/car/company?search=` + localStorage.getItem('nameCompany'), { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apicar+`company?search=` + localStorage.getItem('nameCompany'), { headers: headers }).subscribe(res => {
 
       this.datarelate = res
 
@@ -146,7 +142,7 @@ export class CardetailComponent implements OnInit {
         this.arrayrelate.push(this.tmparray[i])
         if (i == 3) break
       }
-      console.log(this.arrayrelate)
+    
 
 
 
@@ -167,7 +163,7 @@ export class CardetailComponent implements OnInit {
 
   }
   comparecar() {
-    console.log(localStorage.getItem('arraycomparecar'))
+   
     this.iddetail = localStorage.getItem('idcardetail')
     if (localStorage.getItem('arraycomparecar') == null || localStorage.getItem('arraycomparecar') == "") {
       localStorage.setItem('arraycomparecar', this.iddetail);
@@ -212,7 +208,7 @@ export class CardetailComponent implements OnInit {
         while (i < numberstring) {
 
           var t = this.idcar.indexOf(",")
-          console.log(t)
+
           if (t == -1) this.arrayid.push(this.idcar)
           else this.arrayid.push(this.idcar.slice(start, t))
 
@@ -220,7 +216,7 @@ export class CardetailComponent implements OnInit {
 
 
           i++;
-          console.log(this.arrayid)
+    
 
         }
         for (let i = 0; i < this.arrayid.length; i++) {
@@ -288,13 +284,12 @@ export class CardetailComponent implements OnInit {
 
 
 
-    this.http.get(`http://127.0.0.1:3000/api/schedule/user`, { headers: headers }).subscribe(res => {
+    this.http.get(this.api.apischedule+`user`, { headers: headers }).subscribe(res => {
 
       this.data = res
 
       this.arraybooking = this.data.data
-      console.log(this.arraybooking)
-      console.log(idcar)
+     
       for (let i = 0; i < this.arraybooking.length; i++) {
         if (idcar == this.arraybooking[i].carId) {
           exitst = true
@@ -304,8 +299,7 @@ export class CardetailComponent implements OnInit {
 
 
       }
-      console.log(exitst)
-      console.log(this.arraybooking.length)
+  
       if (this.arraybooking.length == 4) {
         Swal.fire({
           title: 'You can only book 4 cars',

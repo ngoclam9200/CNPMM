@@ -61,7 +61,7 @@ export class CompanycarComponent implements OnInit {
 
 
     this.http.get(this.api.apicompany+`all`, { headers: headers }).subscribe(res => {
-      
+     
       this.data = res
 
       this.array = this.data.data
@@ -173,7 +173,11 @@ export class CompanycarComponent implements OnInit {
           'success'
 
         )
-        this.getcompany()
+       
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+      
       }
 
 

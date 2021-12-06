@@ -13,6 +13,7 @@ export class ListbookinguserComponent implements OnInit {
   array: any = []
   data; iduser: any
   arraydata: any = []
+  nocar=true
   constructor(private http: HttpClient, private router: Router, private api:ApiService) { }
 
   ngOnInit(): void {
@@ -35,6 +36,11 @@ export class ListbookinguserComponent implements OnInit {
        this.data = res
       this.iduser = this.data.data._id
       this.array = this.data.data
+      if(this.array.length==0) this.nocar=true
+      else{
+        this.nocar=false
+
+      
       for (let i = 0; i < this.array.length; i++) {
         this.http.get(this.api.apicar+`?getId=`+this.array[i].carId).subscribe(res => {
     
@@ -51,6 +57,7 @@ export class ListbookinguserComponent implements OnInit {
         });
        
       }
+    }
      
 
 

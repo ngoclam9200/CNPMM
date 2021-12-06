@@ -222,6 +222,7 @@ export class ListcarComponent implements OnInit {
     this.http.get(this.api.apischedule+`user`, { headers: headers }).subscribe(res => {
 
       this.data = res
+      console.log(res)
 
       this.arraybooking = this.data.data
        for (let i = 0; i < this.arraybooking.length; i++) {

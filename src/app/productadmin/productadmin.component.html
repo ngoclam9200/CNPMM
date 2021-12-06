@@ -34,7 +34,7 @@
     <form [formGroup]="formGroupCar">
       <div class="modal-content">
         <div class="container">
-          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;"
+          <a (click)="cancleupdate()" style="margin-left:550px;color: red;font-size: 30px;cursor: pointer;"
             for="psw"><b>X</b> </a> <br>
 
           <label for="psw"><b>Name car</b></label>
@@ -226,7 +226,7 @@
     <form [formGroup]="formGroupCar">
       <div class="modal-content">
         <div class="container">
-          <a (click)="cancleupdate()" style="margin-left:450px;color: red;font-size: 30px;cursor: pointer;"
+          <a (click)="cancleupdate()" style="margin-left:550px;color: red;font-size: 30px;cursor: pointer;"
             for="psw"><b>X</b> </a> <br>
           <label for="psw"><b>Name car</b></label>
           <small style="color: red;"
@@ -239,7 +239,17 @@
             *ngIf="(formGroupCar.controls['companyName'].invalid && formGroupCar.controls['companyName'].touched) || checkfillcompanyName  ">
             *Name company is required</small>
 
-          <input formControlName="companyName" type="text" value="" name="psw" required>
+            <select formControlName="companyName" style="width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;" required>
+             <option *ngFor="let data of arraycompany" [ngValue]="data.carCompanyName">{{data.carCompanyName}}</option>
+ 
+ 
+ 
+           </select>
 
           <label for="psw-repeat"><b>Color</b></label>
           <small style="color: red;"

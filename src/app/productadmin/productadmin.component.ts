@@ -255,8 +255,9 @@ export class ProductadminComponent implements OnInit {
           'success'
 
         )
-        this.getcar()
-
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
       }
 
 

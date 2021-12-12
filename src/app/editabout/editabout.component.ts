@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 
 import { FormGroup } from '@angular/forms';
@@ -85,8 +85,11 @@ export class EditaboutComponent implements OnInit {
 
   update(data): Observable<any> {
 
+    let headers = new HttpHeaders();
+    var currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    var token = currentUser.token; // your token
+     headers = headers.set('Access-Control-Allow-Origin', '*').set('Authorization', `Bearer ${token}`);
 
-
-    return this.http.post(this.api.apiabout+`update?aboutId=61654bb70e5cb46aa4f7d781`, data);
+    return this.http.post(this.api.apiabout+`update?aboutId=61654bb70e5cb46aa4f7d781`, data,{headers:headers});
   }
 }

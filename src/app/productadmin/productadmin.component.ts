@@ -387,7 +387,7 @@ export class ProductadminComponent implements OnInit {
      return this.http.post(this.api.apicar+`?updateId=` + this.idcar, data, { headers: headers });
   }
   changenewimage() {
-    if (this.imagePreview != null) {
+   {
       this.newimage = true
 
     }
